@@ -1,7 +1,6 @@
 /* === Clean-Room Styles: Villa Cidade Jardim Bodas === */
 
 /* --- Fonts Import --- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* --- Header --- */
 .bodas-header {
@@ -52,10 +51,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('../assets/images/MG_9250-1-scaled.avif');
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
+}
+
+.bodas-hero-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bodas-hero-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .bodas-hero::before {

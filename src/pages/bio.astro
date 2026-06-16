@@ -13,9 +13,7 @@ import '../styles/bio.css';
   canonical="https://villacidadejd.com.br/bio/"
 >
   <Fragment slot="head">
-    <!-- Flatpickr CSS & JS para Calendários -->
-    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css" />
-    <script is:inline src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css" media="print" onload="this.media='all'" />
   </Fragment>
 
   <!-- Cabeçalho com Logotipo -->
@@ -27,6 +25,9 @@ import '../styles/bio.css';
 
   <!-- Seção Principal com Formulário -->
   <main class="bio-main">
+    <div class="bio-main-bg-wrapper">
+      <Img src="MG_7142-1-scaled.avif" alt="" priority class="bio-main-bg" />
+    </div>
     <div class="bio-bg-overlay"></div>
     <div class="bio-content-container">
       <h1 class="bio-title">Um espaço marcante e pronto para receber o seu evento!</h1>
@@ -130,4 +131,8 @@ import '../styles/bio.css';
       }
     });
   </script>
+
+  <Fragment slot="scripts">
+    <script is:inline src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js" defer></script>
+  </Fragment>
 </Base>

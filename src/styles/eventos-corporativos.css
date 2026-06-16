@@ -1,7 +1,6 @@
 /* === Clean-Room Styles: Villa Cidade Jardim Eventos Corporativos === */
 
 /* --- Fonts Import --- */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* --- Global Variables --- */
 :root {
@@ -88,10 +87,20 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('../assets/images/MG_7142-1-scaled.avif');
-  background-position: bottom center;
-  background-size: cover;
-  background-repeat: no-repeat;
+}
+
+.eventos-hero-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.eventos-hero-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom center;
 }
 
 .eventos-hero::before {

@@ -19,9 +19,7 @@ import '../styles/aniversario.css';
   ]}
 >
   <Fragment slot="head">
-    <!-- Flatpickr CSS & JS para Calendários -->
-    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css" />
-    <script is:inline src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css" media="print" onload="this.media='all'" />
   </Fragment>
 
   <!-- Cabeçalho Fixo -->
@@ -34,6 +32,9 @@ import '../styles/aniversario.css';
   <main>
     <!-- Seção 1: Hero -->
     <section class="aniversario-hero" id="hero-aniversario">
+      <div class="aniversario-hero-bg-wrapper">
+        <Img src="MG_7142-1-1-scaled.avif" alt="" priority class="aniversario-hero-bg" />
+      </div>
       <div class="aniversario-hero-content">
         <h1 class="aniversario-hero-title">Celebre mais um ano de vida com estilo e sofisticação</h1>
         <p class="aniversario-hero-subtitle">No Villa Cidade Jardim, seu aniversário ganha uma experiência sob medida, com ambientações exclusivas, serviço completo e gastronomia.</p>
@@ -289,37 +290,24 @@ import '../styles/aniversario.css';
     </div>
   </footer>
 
-  <!-- Carrosséis de Gastronomia e Drinks (GSAP crossfade) -->
+  <!-- Carrosséis de Gastronomia e Drinks -->
   <script>
-    import gsap from 'gsap';
-
-    function initCrossfade(el: Element) {
-      const slides = el.querySelectorAll<HTMLElement>('.gastronomy-slide');
+    document.querySelectorAll<HTMLElement>('.aniversario-gastronomy-carousel').forEach(carousel => {
+      const slides = carousel.querySelectorAll<HTMLElement>('.gastronomy-slide');
       if (slides.length < 2) return;
-
-      gsap.set(slides, { position: 'absolute', inset: 0, opacity: 0 });
-      gsap.set(slides[0], { opacity: 1 });
-
+      slides[0].classList.add('active');
       let current = 0;
-
-      function next() {
-        const from = slides[current];
+      setInterval(() => {
+        slides[current].classList.remove('active');
         current = (current + 1) % slides.length;
-        const to = slides[current];
-        gsap.to(from, { opacity: 0, duration: 1.2, ease: 'power2.inOut' });
-        gsap.to(to,   { opacity: 1, duration: 1.2, ease: 'power2.inOut' });
-      }
-
-      setInterval(next, 4000);
-    }
-
-    document.querySelectorAll('.aniversario-gastronomy-carousel').forEach(initCrossfade);
+        slides[current].classList.add('active');
+      }, 4000);
+    });
   </script>
 
   <!-- Flatpickr Script & Efeitos de Scroll -->
   <script is:inline>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Calendário Flatpickr
       const dateInput = document.getElementById('aniversario-data-evento');
       if (dateInput && window.flatpickr) {
         window.flatpickr(dateInput, {
@@ -329,12 +317,10 @@ import '../styles/aniversario.css';
         });
       }
 
-      // 2. Cabeçalho Fixo dinâmico
       const header = document.getElementById('meu-header-fixo');
       const hero = document.getElementById('hero-aniversario');
       if (header && hero) {
         window.addEventListener('scroll', () => {
-          const heroHeight = hero.offsetHeight;
           if (window.scrollY > 100) {
             header.classList.add('cor-ativa');
           } else {
@@ -344,4 +330,8 @@ import '../styles/aniversario.css';
       }
     });
   </script>
+
+  <Fragment slot="scripts">
+    <script is:inline src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js" defer></script>
+  </Fragment>
 </Base>

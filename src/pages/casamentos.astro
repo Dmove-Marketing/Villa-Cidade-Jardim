@@ -1,11 +1,27 @@
 ---
 // Gerado a partir de: casamentos.html
 import { Fragment } from 'astro/jsx-runtime';
+import { getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import config from '../../config.json';
 import Img from '../components/ui/Img.astro';
 import LeadForm from '../components/forms/LeadForm.astro';
 import '../styles/casamentos.css';
+
+const imageGlob = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/**/*.{jpg,jpeg,png,webp,avif,gif}',
+  { eager: true }
+);
+const heroDesktop = await getImage({
+  src: imageGlob['/src/assets/images/Villa-Cidade-Jardim-Desktop333.jpg.avif'].default,
+  width: 1440,
+  quality: 80,
+});
+const heroMobile = await getImage({
+  src: imageGlob['/src/assets/images/Villa-Cidade-Jardim-Mobile222.jpg_resultado.avif'].default,
+  width: 768,
+  quality: 80,
+});
 ---
 
 <Base
@@ -21,9 +37,7 @@ import '../styles/casamentos.css';
   ]}
 >
   <Fragment slot="head">
-    <!-- Flatpickr CSS & JS para Calendários -->
-    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css" />
-    <script is:inline src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css" media="print" onload="this.media='all'" />
   </Fragment>
 
   <!-- Cabeçalho Fixo -->
@@ -36,6 +50,12 @@ import '../styles/casamentos.css';
   <main>
     <!-- Seção Hero -->
     <section class="casamentos-hero" id="hero-casamentos">
+      <div class="casamentos-hero-bg-wrapper">
+        <picture>
+          <source media="(max-width: 767px)" srcset={heroMobile.src} />
+          <img src={heroDesktop.src} alt="" class="casamentos-hero-bg" fetchpriority="high" loading="eager" width={heroDesktop.attributes.width} height={heroDesktop.attributes.height} />
+        </picture>
+      </div>
       <div class="casamentos-hero-content">
         <div class="casamentos-hero-title-wrapper">
           <span class="casamentos-hero-cursive">Celebre</span>
@@ -326,4 +346,8 @@ import '../styles/casamentos.css';
       verificarScroll();
     });
   </script>
+
+  <Fragment slot="scripts">
+    <script is:inline src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js" defer></script>
+  </Fragment>
 </Base>

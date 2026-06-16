@@ -1,7 +1,6 @@
 /* === Clean-Room Styles: Villa Cidade Jardim Casamentos === */
 
 /* --- Fonts Import --- */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* --- Custom Font Face (Autography) --- */
 @font-face {
@@ -74,10 +73,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  background-image: url('../assets/images/Villa-Cidade-Jardim-Desktop333.jpg.avif');
-  background-position: bottom center;
-  background-size: cover;
-  background-repeat: no-repeat;
+}
+
+.casamentos-hero-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.casamentos-hero-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom center;
 }
 
 .casamentos-hero::before {
@@ -707,7 +716,6 @@
   }
 
   .casamentos-hero {
-    background-image: url('../assets/images/Villa-Cidade-Jardim-Mobile222.jpg_resultado.avif');
     padding: 40px 15px 60px 15px;
     min-height: 100vh;
   }

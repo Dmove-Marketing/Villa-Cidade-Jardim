@@ -31,14 +31,15 @@ import '../styles/eventos-corporativos.css';
   ]}
 >
   <Fragment slot="head">
-    <!-- Flatpickr CSS & JS para Calendários -->
-    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css" />
-    <script is:inline src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css" media="print" onload="this.media='all'" />
   </Fragment>
 
   <main>
     <!-- Seção Hero com Form Split -->
     <section class="eventos-hero">
+      <div class="eventos-hero-bg-wrapper">
+        <Img src="MG_7142-1-scaled.avif" alt="" priority class="eventos-hero-bg" />
+      </div>
       <div class="eventos-hero-container">
         <!-- Coluna Esquerda: Texto e Identidade -->
         <div class="eventos-hero-left">
@@ -402,4 +403,8 @@ import '../styles/eventos-corporativos.css';
       }
     });
   </script>
+
+  <Fragment slot="scripts">
+    <script is:inline src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js" defer></script>
+  </Fragment>
 </Base>

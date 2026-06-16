@@ -21,9 +21,7 @@ import '../styles/bodas.css';
   ]}
 >
   <Fragment slot="head">
-    <!-- Flatpickr CSS & JS para Calendários -->
-    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css" />
-    <script is:inline src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css" media="print" onload="this.media='all'" />
   </Fragment>
 
   <!-- Cabeçalho com Logotipo -->
@@ -36,6 +34,9 @@ import '../styles/bodas.css';
   <main>
     <!-- Seção Hero -->
     <section class="bodas-hero">
+      <div class="bodas-hero-bg-wrapper">
+        <Img src="MG_9250-1-scaled.avif" alt="" priority class="bodas-hero-bg" />
+      </div>
       <div class="bodas-hero-content">
         <h1 class="bodas-hero-title">Celebre sua história de amor com a emoção que ela merece.</h1>
         <p class="bodas-hero-subtitle">No Villa Cidade Jardim, cada renovação de votos com cenários personalizados e gastronomia autoral.</p>
@@ -339,4 +340,8 @@ import '../styles/bodas.css';
       verificarScroll();
     });
   </script>
+
+  <Fragment slot="scripts">
+    <script is:inline src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js" defer></script>
+  </Fragment>
 </Base>
