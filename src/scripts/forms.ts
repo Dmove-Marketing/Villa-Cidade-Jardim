@@ -73,6 +73,42 @@ export function initForms() {
         }
       });
 
+      // Validação de formato: email
+      form.querySelectorAll<HTMLInputElement>('input[type="email"]').forEach((field) => {
+        if (!field.value) return; // campo vazio já capturado pelo required acima
+        const ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(field.value);
+        if (!ok) {
+          isValid = false;
+          (field as HTMLElement).style.borderColor = '#ef4444';
+          (field as HTMLElement).style.outline = '2px solid #ef4444';
+          if (!firstInvalid) firstInvalid = field;
+          const clear = () => {
+            (field as HTMLElement).style.removeProperty('border-color');
+            (field as HTMLElement).style.removeProperty('outline');
+            field.removeEventListener('input', clear);
+          };
+          field.addEventListener('input', clear);
+        }
+      });
+
+      // Validação de formato: telefone (mínimo 10 dígitos — DDD + número)
+      form.querySelectorAll<HTMLInputElement>('[name="telefone"]').forEach((field) => {
+        if (!field.value) return;
+        const digits = field.value.replace(/\D/g, '');
+        if (digits.length < 10) {
+          isValid = false;
+          (field as HTMLElement).style.borderColor = '#ef4444';
+          (field as HTMLElement).style.outline = '2px solid #ef4444';
+          if (!firstInvalid) firstInvalid = field;
+          const clear = () => {
+            (field as HTMLElement).style.removeProperty('border-color');
+            (field as HTMLElement).style.removeProperty('outline');
+            field.removeEventListener('input', clear);
+          };
+          field.addEventListener('input', clear);
+        }
+      });
+
       if (!isValid) {
         firstInvalid!.scrollIntoView({ behavior: 'smooth', block: 'center' });
         (firstInvalid as HTMLElement).focus();
@@ -102,7 +138,7 @@ export function initForms() {
 
       const formData = new FormData(form);
       const rawData: Record<string, string> = {};
-      formData.forEach((v, k) => { if (k !== 'website') rawData[k] = v.toString(); });
+      formData.forEach((v, k) => { if (k !== 'website' && k !== 'fonte') rawData[k] = v.toString(); });
 
       const trackingRaw = sessionStorage.getItem('dmove_tracking');
       const tracking: Record<string, string> = trackingRaw ? JSON.parse(trackingRaw) : {};
@@ -111,12 +147,18 @@ export function initForms() {
       const dateStr = now.toLocaleDateString('pt-BR');
       const timeStr = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
 
+      // Mapeamento explícito de nomes de campo → padrão n8n Dmove
+      const FIELD_MAP: Record<string, string> = {
+        telefone: 'WhatsApp',
+        email:    'E-mail',
+        tipo:     'Tipo de evento',
+        data:     'Data do evento',
+      };
+
       const capitalizedFields: Record<string, string> = {};
-      let fonteBase = rawData['fonte'] || project;
       Object.entries(rawData).forEach(([key, val]) => {
-        if (key === 'fonte') return;
-        const capKey = key.charAt(0).toUpperCase() + key.slice(1);
-        capitalizedFields[capKey] = val;
+        const mappedKey = FIELD_MAP[key] ?? (key.charAt(0).toUpperCase() + key.slice(1));
+        capitalizedFields[mappedKey] = val;
       });
 
       const trackingParamKeys = [
@@ -127,27 +169,22 @@ export function initForms() {
       ];
       const qs = new URLSearchParams();
       trackingParamKeys.forEach(k => { if (tracking[k]) qs.set(k, tracking[k]); });
-      const fonte = qs.toString() ? `${fonteBase}?${qs.toString()}` : fonteBase;
 
-      // Campos Meta CAPI — enviados também como campos flat para uso direto no n8n
-      const metaCapi: Record<string, string> = {};
-      if (tracking['fbc'])         metaCapi['fbc']         = tracking['fbc'];
-      if (tracking['fbp'])         metaCapi['fbp']         = tracking['fbp'];
-      if (tracking['external_id']) metaCapi['external_id'] = tracking['external_id'];
-      if (tracking['event_id'])    metaCapi['event_id']    = tracking['event_id'];
+      const pathname  = window.location.pathname.replace(/\/$/, '') || '/';
+      const fonteBase = 'Landing page' + pathname;
+      const fonte     = qs.toString() ? `${fonteBase}?${qs.toString()}` : fonteBase;
 
       const payload: Record<string, string> = {
         ...capitalizedFields,
-        Fonte: fonte,
-        Data: dateStr,
-        'Horário': timeStr,
-        'URL da página': window.location.href,
-        'Agente de usuário': navigator.userAgent,
-        'IP remoto': '',
-        'Desenvolvido por': 'Dmove',
-        form_id: formId,
-        form_name: formId,
-        ...metaCapi,
+        Fonte:        fonte,
+        Date:         dateStr,
+        Time:         timeStr,
+        'Page URL':   window.location.href,
+        'User Agent': navigator.userAgent,
+        'Remote IP':  '',
+        'Powered by': 'Dmove',
+        form_id:      formId,
+        form_name:    formId,
       };
 
       try {

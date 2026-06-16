@@ -1,0 +1,802 @@
+/* === Clean-Room Styles: Villa Cidade Jardim Bodas === */
+
+/* --- Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- Header --- */
+.bodas-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: transparent !important;
+  border-bottom: 1px solid transparent !important;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.bodas-header.cor-ativa {
+  background-color: #F7F5F2 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03) !important;
+}
+
+.header-logo {
+  transition: filter 0.4s ease;
+}
+
+#meu-header-fixo:not(.cor-ativa) .header-logo {
+  filter: brightness(0) invert(1) !important;
+}
+
+.logo-container {
+  width: 100%;
+  max-width: 180px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-container img {
+  width: 100%;
+  height: auto;
+}
+
+/* --- Hero Section --- */
+.bodas-hero {
+  position: relative;
+  min-height: 90vh;
+  padding: 80px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../assets/images/MG_9250-1-scaled.avif');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bodas-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(35, 31, 32, 0.55);
+  z-index: 1;
+}
+
+.bodas-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+
+.bodas-hero-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(28px, 5vw, 41px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.15;
+  color: #F7F5F2;
+  max-width: 900px;
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.bodas-hero-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(16px, 3.5vw, 22px);
+  font-weight: 400;
+  line-height: 1.35;
+  color: #F7F5F2;
+  max-width: 720px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.bodas-hero-cta {
+  background-color: #47BB28;
+  color: #F7F5F2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 16px 40px;
+  border-radius: 31px;
+  box-shadow: 0 10px 20px rgba(71, 187, 40, 0.3);
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  margin-top: 16px;
+}
+
+.bodas-hero-cta:hover {
+  background-color: #3fa523;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(71, 187, 40, 0.4);
+}
+
+.bodas-hero-cta:active {
+  transform: translateY(1px);
+}
+
+/* --- Section 2: Split Content (Um espaço que se adapta...) --- */
+.bodas-split-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+  background-color: #F7F5F2;
+}
+
+.bodas-split-image {
+  background-image: url('../assets/images/MG_6962-scaled.avif');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 400px;
+}
+
+.bodas-split-text-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 60px 40px 60px 80px;
+}
+
+.bodas-split-text-content {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bodas-split-text-content .bodas-section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(24px, 4.5vw, 48px);
+  font-weight: 700;
+  color: #984749;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.bodas-split-text-content .bodas-section-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #7A7A7A;
+}
+
+.bodas-gallery-section {
+  padding: 80px 0 0 0;
+  background-color: #934555;
+  text-align: center;
+}
+
+.bodas-gallery-header {
+  max-width: 800px;
+  margin: 0 auto 50px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0 20px;
+}
+
+.bodas-gallery-section .bodas-section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(24px, 4.5vw, 48px);
+  font-weight: 700;
+  color: #DDC588;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.bodas-gallery-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #F7F5F2;
+}
+
+.bodas-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.bodas-gallery-item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  display: block;
+}
+
+.bodas-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.bodas-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(152, 71, 73, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.bodas-gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.bodas-gallery-item:hover .bodas-gallery-overlay {
+  opacity: 1;
+}
+
+/* --- Section 4: Features --- */
+.bodas-features-section {
+  padding: 80px 20px;
+  background-color: #F7F5F2;
+  text-align: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.bodas-features-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(24px, 4.5vw, 48px);
+  font-weight: 700;
+  color: #984749;
+  text-transform: uppercase;
+  max-width: 800px;
+  margin: 0 auto 12px auto;
+}
+
+.bodas-features-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  color: #7A7A7A;
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+}
+
+.bodas-features-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 20px;
+  max-width: 90%;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.bodas-feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 10px;
+}
+
+.bodas-feature-icon {
+  width: 50px;
+  height: 50px;
+  fill: none;
+  color: #8F6651;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bodas-feature-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.bodas-feature-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  color: #7A7A7A;
+  line-height: 1.3;
+}
+
+/* --- Section 5: Gastronomy --- */
+.bodas-gastronomy-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #F7F5F2;
+}
+
+.bodas-gastronomy-text-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 92px 40px;
+  background-image: linear-gradient(rgba(35, 31, 32, 0.55), rgba(35, 31, 32, 0.55)), url('../assets/images/MG_7307-scaled.avif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #F7F5F2;
+}
+
+.bodas-gastronomy-text-content {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.bodas-gastronomy-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(24px, 4.5vw, 48px);
+  font-weight: 700;
+  color: #DDC588;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.bodas-gastronomy-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(247, 245, 242, 0.95);
+}
+
+.bodas-gastronomy-carousel {
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
+}
+
+.bodas-carousel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+}
+
+.bodas-carousel-slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.bodas-carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Section 6: Contact Section (Contato) --- */
+.bodas-contact-section {
+  padding: 100px 20px;
+  background-color: #984749;
+  display: flex;
+  justify-content: center;
+}
+
+.bodas-contact-container {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.bodas-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bodas-contact-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(24px, 4.5vw, 48px);
+  font-weight: 700;
+  color: #F7F5F2;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.bodas-contact-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(16px, 2.5vw, 23px);
+  font-weight: 400;
+  color: #F7F5F2;
+  line-height: 1.3;
+}
+
+/* --- Form Card --- */
+.bodas-form-card {
+  background-color: #F7F5F2;
+  border-radius: 40px;
+  padding: 35px 30px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* --- LeadForm (Prefixed with bodas-) --- */
+.bodas-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.bodas-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.bodas-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.bodas-form-group.full {
+  grid-column: span 2;
+}
+
+/* Form Inputs Styling */
+.bodas-input,
+.bodas-select,
+.bodas-textarea {
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid #984749 !important;
+  border-radius: 0 !important;
+  padding: 10px 4px !important;
+  color: #984749 !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  outline: none !important;
+  width: 100%;
+  transition: border-color 0.3s;
+}
+
+.bodas-textarea {
+  resize: vertical;
+}
+
+/* Input Focus States */
+.bodas-input:focus,
+.bodas-select:focus,
+.bodas-textarea:focus {
+  border-bottom-color: #984749 !important;
+}
+
+/* Select options dropdown */
+.bodas-select option {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+/* Input Placeholders */
+.bodas-input::placeholder,
+.bodas-select::placeholder,
+.bodas-textarea::placeholder {
+  color: rgba(152, 71, 73, 0.7) !important;
+  opacity: 1;
+}
+
+/* Submit Button */
+.bodas-submit {
+  background-color: #61CE70 !important;
+  color: #ffffff !important;
+  border-radius: 15px !important;
+  border: 1px solid #61CE70 !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  padding: 14px !important;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.bodas-submit:hover:not(:disabled) {
+  background-color: #4CAF50 !important;
+  border-color: #4CAF50 !important;
+  transform: translateY(-1px);
+}
+
+.bodas-submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.bodas-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Validation errors */
+.bodas-field-error {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Privacy policy text */
+.bodas-form-footer {
+  font-size: 14px;
+  color: #984749;
+  text-align: center;
+  margin-top: 15px;
+  width: 100%;
+  line-height: 1.4;
+}
+
+/* Flatpickr override to match gold theme */
+.flatpickr-calendar {
+  background: #1c1614 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+.flatpickr-calendar .flatpickr-months {
+  background: #0d0908 !important;
+}
+.flatpickr-calendar .flatpickr-month {
+  color: #ffffff !important;
+}
+.flatpickr-calendar .flatpickr-weekday {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.flatpickr-calendar .flatpickr-day {
+  color: #ffffff !important;
+}
+.flatpickr-calendar .flatpickr-day:hover {
+  background: #DDC588 !important;
+  color: #000000 !important;
+}
+.flatpickr-calendar .flatpickr-day.selected {
+  background: #984749 !important;
+  color: #ffffff !important;
+  border-color: #984749 !important;
+}
+
+/* --- Footer --- */
+.bodas-footer {
+  background-color: #232323;
+  padding: 24px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 30px;
+}
+
+.footer-copyright {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+}
+
+.footer-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-logo {
+  max-width: 180px;
+  height: auto;
+  display: block;
+}
+
+.footer-developer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.developer-logo {
+  width: 90px;
+  height: auto;
+  display: block;
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 992px) {
+  .bodas-split-section,
+  .bodas-gastronomy-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .bodas-split-image {
+    order: 2;
+  }
+  
+  .bodas-split-text-container {
+    order: 1;
+  }
+  
+  .bodas-contact-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .bodas-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bodas-features-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .bodas-hero {
+    padding: 60px 15px;
+    min-height: 80vh;
+  }
+
+  .bodas-split-text-container,
+  .bodas-gastronomy-text-container {
+    padding: 50px 20px;
+  }
+
+  .bodas-split-text-content,
+  .bodas-contact-info {
+    text-align: center;
+    align-items: center;
+  }
+
+  .bodas-section-title,
+  .bodas-features-title,
+  .bodas-gastronomy-title,
+  .bodas-contact-title {
+    font-size: 21px;
+  }
+
+  .bodas-split-text-content .bodas-section-text,
+  .bodas-gallery-subtitle,
+  .bodas-features-subtitle,
+  .bodas-feature-label,
+  .bodas-gastronomy-text,
+  .bodas-contact-subtitle {
+    font-size: 16px;
+  }
+
+  .bodas-gastronomy-carousel {
+    min-height: unset;
+    aspect-ratio: 4 / 3;
+  }
+
+  .bodas-carousel-slide img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .bodas-features-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .bodas-feature-card:last-child {
+    grid-column: 2;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .footer-copyright {
+    order: 1;
+    text-align: center;
+  }
+
+  .footer-brand {
+    order: 2;
+  }
+
+  .footer-developer {
+    order: 3;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .bodas-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bodas-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bodas-feature-card:last-child {
+    grid-column: span 2;
+  }
+
+  .bodas-form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .bodas-form-card {
+    padding: 30px 15px;
+  }
+}
+
+/* --- Success State --- */
+.bodas-success-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  color: #ffffff;
+}
+
+.bodas-success-state.active {
+  display: flex;
+}
+
+.bodas-success-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #DDC588;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.bodas-success-icon svg {
+  width: 30px;
+  height: 30px;
+  stroke: #984749;
+  stroke-width: 3;
+  fill: none;
+}
+
+.bodas-success-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.bodas-success-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  opacity: 0.9;
+}

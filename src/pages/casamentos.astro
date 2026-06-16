@@ -1,0 +1,329 @@
+---
+// Gerado a partir de: casamentos.html
+import { Fragment } from 'astro/jsx-runtime';
+import Base from '../layouts/Base.astro';
+import config from '../../config.json';
+import Img from '../components/ui/Img.astro';
+import LeadForm from '../components/forms/LeadForm.astro';
+import '../styles/casamentos.css';
+---
+
+<Base
+  title="Casamentos — Villa Cidade Jardim"
+  description="Celebre seu casamento com a emoção que ele merece no Villa Cidade Jardim. Cenários personalizados, infraestrutura completa e gastronomia autoral."
+  ogImage="/images/og-default.jpg"
+  canonical="https://villacidadejd.com.br/casamentos/"
+  whatsappEventTypes={[
+    { value: 'Casamento',                label: 'Casamento'                },
+    { value: 'Bodas',                    label: 'Bodas'                    },
+    { value: 'Confraternização social',  label: 'Confraternização social'  },
+    { value: 'Outros',                   label: 'Outros'                   },
+  ]}
+>
+  <Fragment slot="head">
+    <!-- Flatpickr CSS & JS para Calendários -->
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css" />
+    <script is:inline src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+  </Fragment>
+
+  <!-- Cabeçalho Fixo -->
+  <header class="casamentos-header" id="meu-header-fixo">
+    <div class="logo-container">
+      <Img src="logo_villa_cidade_jardim-semfundo.png" alt="Villa Cidade Jardim" class="header-logo" priority />
+    </div>
+  </header>
+
+  <main>
+    <!-- Seção Hero -->
+    <section class="casamentos-hero" id="hero-casamentos">
+      <div class="casamentos-hero-content">
+        <div class="casamentos-hero-title-wrapper">
+          <span class="casamentos-hero-cursive">Celebre</span>
+          <h1 class="casamentos-hero-title">Seu casamento <br/>com muita emoção</h1>
+        </div>
+        <p class="casamentos-hero-subtitle">Aqui seu grande dia conta com cenários personalizados e gastronomia autoral.</p>
+        <a href="#contato" class="casamentos-hero-cta">Comece a planejar</a>
+      </div>
+    </section>
+
+    <!-- Seção 2: Banner Image (Desktop) -->
+    <section class="casamentos-banner-section"></section>
+
+    <!-- Seção 3: Split Content (Um espaço que se adapta...) -->
+    <section class="casamentos-split-section">
+      <div class="casamentos-split-image"></div>
+      <div class="casamentos-split-text-container">
+        <div class="casamentos-split-text-content">
+          <h2 class="casamentos-section-title">Um espaço que se adapta ao seu casamento!</h2>
+          <p class="casamentos-section-text">
+            No Villa Cidade Jardim, cada casamento é uma experiência única. Integrado ao Shopping Cidade Jardim, nosso espaço combina liberdade para criar cenários dos sonhos, cuidado em cada detalhe e uma equipe dedicada a tornar seu grande dia verdadeiramente memorável.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 4: Galeria de Ambientes -->
+    <section class="casamentos-gallery-section">
+      <div class="casamentos-gallery-header">
+        <h2 class="casamentos-section-title">Espaços que acompanham cada momento do seu grande dia</h2>
+        <p class="casamentos-gallery-subtitle">Oferecemos ambientes versáteis e composições personalizadas, criando cenários que refletem a essência do casal.</p>
+      </div>
+
+      <div class="casamentos-gallery-grid">
+        <div class="casamentos-gallery-item">
+          <Img src="MG_9220-1-scaled.avif" alt="Casamento Villa Cidade Jardim - Foto 1" />
+          <div class="casamentos-gallery-overlay"></div>
+        </div>
+        <div class="casamentos-gallery-item">
+          <Img src="MG_9222-scaled.avif" alt="Casamento Villa Cidade Jardim - Foto 2" />
+          <div class="casamentos-gallery-overlay"></div>
+        </div>
+        <div class="casamentos-gallery-item">
+          <Img src="Copia-de-01.jpg-scaled.avif" alt="Casamento Villa Cidade Jardim - Foto 3" />
+          <div class="casamentos-gallery-overlay"></div>
+        </div>
+        <div class="casamentos-gallery-item">
+          <Img src="MG_9221-scaled.avif" alt="Casamento Villa Cidade Jardim - Foto 4" />
+          <div class="casamentos-gallery-overlay"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 5: Características / Detalhes (Cinco ícones) -->
+    <section class="casamentos-features-section">
+      <h2 class="casamentos-features-title">Cada detalhe pensado para vocês aproveitarem sem preocupações</h2>
+      <p class="casamentos-features-subtitle">Tudo é organizado para garantir tranquilidade e bem-estar do início ao fim.</p>
+
+      <div class="casamentos-features-grid">
+        <!-- Item 1: Equipe operacional -->
+        <div class="casamentos-feature-card">
+          <div class="casamentos-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <span class="casamentos-feature-label">Equipe<br/>operacional</span>
+        </div>
+
+        <!-- Item 2: Mobiliário Completo -->
+        <div class="casamentos-feature-card">
+          <div class="casamentos-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"></path>
+              <path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v5z"></path>
+              <path d="M6 18v3"></path>
+              <path d="M18 18v3"></path>
+            </svg>
+          </div>
+          <span class="casamentos-feature-label">Mobiliário<br/>Completo</span>
+        </div>
+
+        <!-- Item 3: Bar de Drinks -->
+        <div class="casamentos-feature-card">
+          <div class="casamentos-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 22h8"></path>
+              <path d="M12 11v11"></path>
+              <path d="m19 3-7 8-7-8Z"></path>
+            </svg>
+          </div>
+          <span class="casamentos-feature-label">Bar de<br/>Drinks</span>
+        </div>
+
+        <!-- Item 4: Decoração -->
+        <div class="casamentos-feature-card">
+          <div class="casamentos-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 2a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4z"></path>
+              <path d="M12 14a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4z"></path>
+              <path d="M2 12a4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4z"></path>
+              <path d="M14 12a4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4z"></path>
+            </svg>
+          </div>
+          <span class="casamentos-feature-label">Decoração</span>
+        </div>
+
+        <!-- Item 5: Som e luz -->
+        <div class="casamentos-feature-card">
+          <div class="casamentos-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+              <circle cx="12" cy="14" r="4"></circle>
+              <line x1="12" y1="6" x2="12.01" y2="6"></line>
+            </svg>
+          </div>
+          <span class="casamentos-feature-label">Som e luz</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 6: Gastronomia -->
+    <section class="casamentos-gastronomy-section">
+      <div class="casamentos-gastronomy-text-container">
+        <div class="casamentos-gastronomy-text-content">
+          <h2 class="casamentos-gastronomy-title">Gastronomia encantadora</h2>
+          <p class="casamentos-gastronomy-text">
+            Cada menu é pensado de forma exclusiva, reunindo preferências e criando experiências que encantam os convidados.
+          </p>
+        </div>
+      </div>
+      <div class="casamentos-gastronomy-carousel">
+        <div class="casamentos-carousel-slide active">
+          <Img src="gastronomia2.avif" alt="Alta Gastronomia - Foto 1" />
+        </div>
+        <div class="casamentos-carousel-slide">
+          <Img src="WhatsApp-Image-2026-01-27-at-10.49.04-1.avif" alt="Alta Gastronomia - Foto 2" />
+        </div>
+        <div class="casamentos-carousel-slide">
+          <Img src="WhatsApp-Image-2026-01-27-at-10.49.04.avif" alt="Alta Gastronomia - Foto 3" />
+        </div>
+        <div class="casamentos-carousel-slide">
+          <Img src="MG_7131-1.avif" alt="Alta Gastronomia - Foto 4" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 7: Contato -->
+    <section class="casamentos-contact-section" id="contato">
+      <div class="casamentos-contact-container">
+        <div class="casamentos-contact-info">
+          <h2 class="casamentos-contact-title">Vamos começar<br/> a planejar seu grande dia?</h2>
+          <p class="casamentos-contact-subtitle">Preencha o formulário e converse com a nossa equipe.</p>
+        </div>
+
+        <div class="casamentos-form-card">
+          <LeadForm
+            formId="form_casamentos"
+            project={config.project_slug}
+            submitUrl={config.forms['lead-form'].webhooks[0]}
+            redirectUrl={config.forms['lead-form'].redirect_on_success}
+            submitText="ENVIAR SOLICITAÇÃO"
+            honeypot
+            prefix="casamentos"
+            fields={[
+              { name: 'nome', type: 'text', placeholder: 'Nome', required: true },
+              {
+                type: 'row',
+                fields: [
+                  { name: 'telefone', type: 'tel', placeholder: 'WhatsApp', required: true },
+                  { name: 'email', type: 'email', placeholder: 'E-mail', required: true }
+                ]
+              },
+              {
+                name: 'tipo',
+                type: 'select',
+                required: true,
+                options: [
+                  { value: '', label: 'Tipo de evento:', disabled: true },
+                  { value: 'Casamento', label: 'Casamento', selected: true },
+                  { value: 'Bodas', label: 'Bodas' },
+                  { value: 'Confraternização social', label: 'Confraternização social' },
+                  { value: 'Outros', label: 'Outros' }
+                ]
+              },
+              { name: 'data', type: 'text', placeholder: 'Data do Evento', required: true, id: 'casamentos-data-evento', readonly: true },
+              { name: 'convidados', type: 'number', placeholder: 'N° de Pessoas', required: true },
+              { name: 'mensagem', type: 'textarea', placeholder: 'Detalhes adicionais: (Não obrigatório)', required: false, rows: 4 }
+            ]}
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="casamentos-footer">
+    <div class="footer-container">
+      <div class="footer-copyright">
+        <p>© 2026 Villa Cidade Jardim - Todos os direitos reservados</p>
+      </div>
+
+      <div class="footer-brand">
+        <Img src="logo_villa_cidade_jardim-semfundo.png" alt="Villa Cidade Jardim" class="footer-logo" />
+      </div>
+
+      <div class="footer-developer">
+        <span>Desenvolvido por:</span>
+        <a href="http://dmove.com.br" target="_blank" rel="noopener noreferrer">
+          <Img src="Versao-Principal-Negativo-scaled-e1750426923582.avif" alt="Dmove" class="developer-logo" />
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Flatpickr & Carousel Scripts -->
+  <script is:inline>
+    // 1. Calendário Flatpickr
+    document.addEventListener('DOMContentLoaded', () => {
+      const dateInput = document.getElementById('casamentos-data-evento');
+      if (dateInput && window.flatpickr) {
+        window.flatpickr(dateInput, {
+          disableMobile: true,
+          dateFormat: 'd/m/Y',
+          locale: {
+            weekdays: {
+              shorthand: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+              longhand: ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
+            },
+            months: {
+              shorthand: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+              longhand: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            },
+            firstDayOfWeek: 1,
+            ordinal: () => 'º',
+          },
+        });
+      }
+    });
+
+    // 2. Carrossel de Gastronomia (Alternância suave de slides)
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.casamentos-carousel-slide');
+      if (slides.length > 1) {
+        let currentIndex = 0;
+        setInterval(() => {
+          slides[currentIndex].classList.remove('active');
+          currentIndex = (currentIndex + 1) % slides.length;
+          slides[currentIndex].classList.add('active');
+        }, 4000);
+      }
+    });
+
+    // 3. Header Transparente com Efeito de Scroll
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.getElementById('meu-header-fixo');
+      const secoes = Array.from(document.querySelectorAll('main > section'));
+
+      if (!header || secoes.length < 2) {
+        return;
+      }
+
+      const indiceInicio = 1;
+      const indiceFim = secoes.length - 1;
+
+      const segundaSecao = secoes[indiceInicio];
+      const secaoFinal = secoes[indiceFim];
+
+      function verificarScroll() {
+        if (!segundaSecao || !secaoFinal) return;
+
+        const posicaoScroll = window.scrollY;
+        const pontoInicio = segundaSecao.offsetTop - 100;
+        const pontoFim = secaoFinal.offsetTop;
+
+        if (posicaoScroll >= pontoInicio && posicaoScroll < pontoFim) {
+          header.classList.add('cor-ativa');
+        } else {
+          header.classList.remove('cor-ativa');
+        }
+      }
+
+      window.addEventListener('scroll', verificarScroll);
+      verificarScroll();
+    });
+  </script>
+</Base>

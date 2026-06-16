@@ -1,0 +1,828 @@
+/* === Clean-Room Styles: Villa Cidade Jardim Aniversário === */
+
+/* --- Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- Global Reset & Variables --- */
+:root {
+  --color-vino: #984749;
+  --color-gold: #DDC588;
+  --color-bg-light: #F7F5F2;
+  --color-text-dark: #231F20;
+  --color-text-gray: #7A7A7A;
+  --color-btn-green: #47BB28;
+  --color-submit-green: #61CE70;
+  --color-submit-hover: #4CAF50;
+  --font-title: 'Montserrat', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-dark);
+  background-color: #FFFFFF;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* --- Header / Navigation --- */
+.aniversario-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: transparent !important;
+  border-bottom: 1px solid transparent !important;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.aniversario-header.cor-ativa {
+  background-color: #F7F5F2 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03) !important;
+}
+
+.logo-container {
+  width: 100%;
+  max-width: 216px;
+  display: flex;
+  justify-content: center;
+}
+
+.header-logo {
+  height: 108px;
+  width: auto;
+  transition: filter 0.4s ease;
+}
+
+#meu-header-fixo:not(.cor-ativa) .header-logo {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* --- Hero Section --- */
+.aniversario-hero {
+  position: relative;
+  min-height: 91vh;
+  padding: 40px 20px 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../assets/images/MG_7142-1-1-scaled.avif');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.aniversario-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(35, 31, 32, 0.55);
+  z-index: 1;
+}
+
+.aniversario-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  padding-top: 100px;
+}
+
+.aniversario-hero-title {
+  font-family: var(--font-title);
+  font-size: clamp(28px, 4.5vw, 41px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  color: #F7F5F2;
+  line-height: 1.2;
+  max-width: 90%;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.aniversario-hero-subtitle {
+  font-family: var(--font-title);
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 400;
+  line-height: 1.4;
+  color: #F7F5F2;
+  max-width: 720px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.aniversario-hero-cta {
+  display: inline-block;
+  background-color: var(--color-btn-green);
+  color: #F7F5F2;
+  font-family: var(--font-title);
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 12px 36px;
+  border-radius: 31px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 20px;
+}
+
+.aniversario-hero-cta:hover {
+  background-color: #0B531A;
+}
+
+/* --- Section 2: Split 50/50 --- */
+.aniversario-split-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: var(--color-bg-light);
+  min-height: 600px;
+}
+
+.aniversario-split-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.aniversario-split-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aniversario-split-text-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #FFFFFF;
+  padding: 80px 60px 80px 10%; /* Recuo esquerdo configurado conforme feedback visual */
+}
+
+.aniversario-split-text-content {
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.aniversario-section-title {
+  font-family: var(--font-title);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--color-vino);
+}
+
+.aniversario-section-text {
+  font-family: var(--font-title);
+  font-size: clamp(16px, 2vw, 21px);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-text-gray);
+}
+
+/* --- Section 3: Gallery Edge-to-Edge --- */
+.aniversario-gallery-section {
+  padding: 80px 0 0 0;
+  background-color: var(--color-vino);
+  text-align: center;
+}
+
+.aniversario-gallery-header {
+  max-width: 800px;
+  margin: 0 auto 50px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0 20px;
+}
+
+.aniversario-gallery-section .aniversario-section-title {
+  color: var(--color-gold);
+}
+
+.aniversario-gallery-subtitle {
+  font-family: var(--font-title);
+  font-size: clamp(16px, 2vw, 21px);
+  font-weight: 400;
+  line-height: 1.4;
+  color: #F7F5F2;
+}
+
+.aniversario-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  width: 90%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.aniversario-gallery-item {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  display: block;
+}
+
+.aniversario-gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.aniversario-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.aniversario-gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.aniversario-gallery-item:hover .aniversario-gallery-overlay {
+  opacity: 1;
+}
+
+/* --- Section 4: Features (No White Cards) --- */
+.aniversario-features-section {
+  padding: 80px 20px;
+  background-color: #FFFFFF;
+  text-align: center;
+}
+
+.aniversario-features-title {
+  font-family: var(--font-title);
+  font-size: clamp(26px, 4vw, 48px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--color-vino);
+  max-width: 1050px;
+  margin: 0 auto 20px auto;
+}
+
+.aniversario-features-subtitle {
+  font-family: var(--font-title);
+  font-size: clamp(16px, 2vw, 21px);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-text-gray);
+  margin-bottom: 50px;
+}
+
+.aniversario-features-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.aniversario-feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+}
+
+.aniversario-feature-icon {
+  width: 50px;
+  height: 50px;
+  color: #8F6651;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aniversario-feature-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 1.5;
+}
+
+.aniversario-feature-label {
+  font-family: var(--font-title);
+  font-size: clamp(16px, 1.8vw, 21px);
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-text-gray);
+}
+
+/* --- Section 5: Gastronomy & Drinks Splits --- */
+.aniversario-gastronomy-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 550px;
+  background-color: #FFFFFF;
+}
+
+.aniversario-gastronomy-info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  padding: 80px 40px;
+}
+
+.aniversario-gastronomy-info.gastronomy-bg {
+  background-image: url('../assets/images/MG_7345-1-scaled.avif');
+}
+
+.aniversario-gastronomy-info.drinks-bg {
+  background-image: url('../assets/images/drink-11.avif');
+}
+
+.aniversario-gastronomy-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 1;
+}
+
+.aniversario-gastronomy-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.aniversario-split-title {
+  font-family: var(--font-title);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  color: var(--color-gold);
+}
+
+.aniversario-split-desc {
+  font-family: var(--font-title);
+  font-size: clamp(16px, 2.2vw, 23px);
+  font-weight: 500;
+  line-height: 1.3;
+  color: #F7F5F2;
+}
+
+.aniversario-gastronomy-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.gastronomy-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.gastronomy-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Section 6: Social Moments Gallery --- */
+.aniversario-moments-section {
+  padding: 80px 0;
+  background-color: #FFFFFF;
+  text-align: center;
+}
+
+.aniversario-moments-header {
+  max-width: 800px;
+  margin: 0 auto 50px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0 20px;
+}
+
+.aniversario-moments-subtitle {
+  font-family: var(--font-title);
+  font-size: clamp(16px, 2vw, 21px);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-text-gray);
+}
+
+.aniversario-moments-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  width: 90%;
+  max-width: 1730px;
+  margin: 0 auto;
+}
+
+.aniversario-moments-item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.aniversario-moments-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  border-radius: 0 !important;
+}
+
+.aniversario-moments-item:hover img {
+  transform: scale(1.06);
+}
+
+/* --- Section 7: Contact Form --- */
+.aniversario-contact-section {
+  background-color: var(--color-vino);
+  padding: 80px 20px;
+}
+
+.aniversario-contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 40px;
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+.aniversario-contact-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #FFFFFF;
+}
+
+.aniversario-contact-title {
+  font-family: var(--font-title);
+  font-size: clamp(28px, 4.2vw, 48px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.aniversario-contact-subtitle {
+  font-family: var(--font-title);
+  font-size: clamp(16px, 2.2vw, 23px);
+  font-weight: 400;
+  line-height: 1.3;
+  color: #FFFFFF !important; /* Cor branca para o subtítulo */
+}
+
+.aniversario-contact-right {
+  width: 100%;
+  background-color: #F7F5F2;
+  border-radius: 40px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* --- LeadForm (Prefixed with aniversario-contato-) --- */
+.aniversario-contato-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.aniversario-contato-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.aniversario-contato-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.aniversario-contato-form-group.full {
+  grid-column: span 2;
+}
+
+.aniversario-contato-input,
+.aniversario-contato-select,
+.aniversario-contato-textarea {
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid #984749 !important;
+  border-radius: 0 !important;
+  padding: 10px 4px !important;
+  color: #984749 !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  outline: none !important;
+  width: 100%;
+  transition: border-color 0.3s;
+}
+
+.aniversario-contato-textarea {
+  resize: vertical;
+}
+
+.aniversario-contato-input:focus,
+.aniversario-contato-select:focus,
+.aniversario-contato-textarea:focus {
+  border-bottom-color: #984749 !important;
+}
+
+.aniversario-contato-select option {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+.aniversario-contato-input::placeholder,
+.aniversario-contato-select::placeholder,
+.aniversario-contato-textarea::placeholder {
+  color: rgba(152, 71, 73, 0.7) !important;
+  opacity: 1;
+}
+
+.aniversario-contato-submit {
+  background-color: #61CE70 !important;
+  color: #ffffff !important;
+  border-radius: 15px !important;
+  border: 1px solid #61CE70 !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  padding: 14px !important;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.aniversario-contato-submit:hover:not(:disabled) {
+  background-color: #4CAF50 !important;
+  border-color: #4CAF50 !important;
+  transform: translateY(-1px);
+}
+
+.aniversario-contato-submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.aniversario-contato-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.aniversario-contato-field-error {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.aniversario-contato-form-footer {
+  font-size: 14px;
+  color: #984749;
+  text-align: center;
+  margin-top: 15px;
+  width: 100%;
+  line-height: 1.4;
+}
+
+.aniversario-contato-success-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  color: #984749;
+}
+
+.aniversario-contato-success-state.active {
+  display: flex;
+}
+
+.aniversario-contato-success-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #DDC588;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.aniversario-contato-success-icon svg {
+  width: 30px;
+  height: 30px;
+  stroke: #984749;
+  stroke-width: 3;
+  fill: none;
+}
+
+.aniversario-contato-success-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.aniversario-contato-success-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* --- Footer (Aligned with Bodas) --- */
+.aniversario-footer {
+  background-color: #231F20;
+  padding: 24px 20px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.footer-copyright p {
+  color: #7A7A7A;
+  font-size: 14px;
+}
+
+.footer-brand {
+  max-width: 180px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-logo {
+  width: 100%;
+  height: auto;
+}
+
+.footer-developer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #7A7A7A;
+  font-size: 14px;
+}
+
+.developer-logo {
+  height: 25px;
+  width: auto;
+}
+
+/* --- Responsive Breakpoints --- */
+@media (max-width: 1024px) {
+  .aniversario-features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .aniversario-split-section {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  
+  .aniversario-split-image {
+    order: 2;
+    height: 350px;
+  }
+  
+  .aniversario-split-text-container {
+    order: 1;
+    padding: 50px 20px;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .aniversario-split-text-content {
+    max-width: 100%;
+    align-items: center;
+  }
+  
+  .aniversario-gastronomy-split {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  
+  .aniversario-gastronomy-carousel {
+    height: 350px;
+  }
+  
+  .bar-drinks .aniversario-gastronomy-carousel {
+    order: 2;
+  }
+  
+  .bar-drinks .aniversario-gastronomy-info {
+    order: 1;
+  }
+  
+  .aniversario-contact-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .aniversario-contact-left {
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .aniversario-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .aniversario-feature-card:last-child {
+    grid-column: span 2;
+  }
+
+  .aniversario-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .aniversario-moments-grid {
+    grid-template-columns: 1fr;
+    width: 90%;
+  }
+  
+  .footer-container {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .footer-copyright {
+    order: 1;
+  }
+  
+  .footer-brand {
+    order: 2;
+  }
+  
+  .footer-developer {
+    order: 3;
+  }
+}
+
+@media (max-width: 480px) {
+  .aniversario-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .aniversario-feature-card:last-child {
+    grid-column: span 2;
+  }
+
+.aniversario-contact-right {
+    padding: 20px;
+  }
+
+  .aniversario-contato-form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

@@ -1,0 +1,347 @@
+---
+// Gerado a partir de: aniversario.html
+import { Fragment } from 'astro/jsx-runtime';
+import Base from '../layouts/Base.astro';
+import config from '../../config.json';
+import Img from '../components/ui/Img.astro';
+import LeadForm from '../components/forms/LeadForm.astro';
+import '../styles/aniversario.css';
+---
+
+<Base
+  title="Aniversário — Villa Cidade Jardim"
+  description="Celebre seu aniversário com estilo e sofisticação no Villa Cidade Jardim. Espaços personalizáveis, gastronomia de alto padrão e estrutura completa."
+  ogImage="/images/og-default.jpg"
+  canonical="https://villacidadejd.com.br/aniversario/"
+  whatsappEventTypes={[
+    { value: 'Aniversário', label: 'Aniversário' },
+    { value: 'Outros',      label: 'Outros'      },
+  ]}
+>
+  <Fragment slot="head">
+    <!-- Flatpickr CSS & JS para Calendários -->
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css" />
+    <script is:inline src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+  </Fragment>
+
+  <!-- Cabeçalho Fixo -->
+  <header class="aniversario-header" id="meu-header-fixo">
+    <div class="logo-container">
+      <Img src="logo_villa_cidade_jardim-semfundo.png" alt="Villa Cidade Jardim" class="header-logo" priority />
+    </div>
+  </header>
+
+  <main>
+    <!-- Seção 1: Hero -->
+    <section class="aniversario-hero" id="hero-aniversario">
+      <div class="aniversario-hero-content">
+        <h1 class="aniversario-hero-title">Celebre mais um ano de vida com estilo e sofisticação</h1>
+        <p class="aniversario-hero-subtitle">No Villa Cidade Jardim, seu aniversário ganha uma experiência sob medida, com ambientações exclusivas, serviço completo e gastronomia.</p>
+        <a href="#contato" class="aniversario-hero-cta">Comece a planejar!</a>
+      </div>
+    </section>
+
+    <!-- Seção 2: O lugar certo (Split 50/50) -->
+    <section class="aniversario-split-section">
+      <div class="aniversario-split-image">
+        <Img src="WhatsApp-Image-2026-01-20-at-10.52.18-1.avif" alt="Celebração Villa Cidade Jardim" />
+      </div>
+      <div class="aniversario-split-text-container">
+        <div class="aniversario-split-text-content">
+          <h2 class="aniversario-section-title">O lugar certo para comemorar do seu jeito</h2>
+          <p class="aniversario-section-text">
+            O Villa Cidade Jardim, integrado ao Shopping Cidade Jardim, é um espaço que reúne estrutura, versatilidade e uma equipe especializada em criar festas alinhadas às preferências de cada aniversariante.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 3: Ambientes adaptáveis (Edge-to-Edge Gallery) -->
+    <section class="aniversario-gallery-section">
+      <div class="aniversario-gallery-header">
+        <h2 class="aniversario-section-title">Ambientes adaptáveis para sua festa</h2>
+        <p class="aniversario-gallery-subtitle">Espaço personalizável para criar o layout ideal do seu aniversário.</p>
+      </div>
+      <div class="aniversario-gallery-grid">
+        <div class="aniversario-gallery-item">
+          <Img src="DANG9447-scaled.avif" alt="Espaço decorado para aniversário" />
+          <div class="aniversario-gallery-overlay"></div>
+        </div>
+        <div class="aniversario-gallery-item">
+          <Img src="DANG9310-scaled.avif" alt="Buffet e convidados" />
+          <div class="aniversario-gallery-overlay"></div>
+        </div>
+        <div class="aniversario-gallery-item">
+          <Img src="DANG8825-scaled.avif" alt="Lounges e mesas de doces" />
+          <div class="aniversario-gallery-overlay"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 4: Estrutura Completa (Features/Ícones sem cards brancos) -->
+    <section class="aniversario-features-section">
+      <h2 class="aniversario-features-title">Estrutura completa para uma festa sem preocupações</h2>
+      <p class="aniversario-features-subtitle">Infraestrutura pensada para trazer conforto aos convidados.</p>
+      
+      <div class="aniversario-features-grid">
+        <!-- Feature 1: Decoração -->
+        <div class="aniversario-feature-card">
+          <div class="aniversario-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 2a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4z"></path>
+              <path d="M12 14a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4z"></path>
+              <path d="M2 12a4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4z"></path>
+              <path d="M14 12a4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4z"></path>
+            </svg>
+          </div>
+          <span class="aniversario-feature-label">Decoração</span>
+        </div>
+
+        <!-- Feature 2: Som e luz -->
+        <div class="aniversario-feature-card">
+          <div class="aniversario-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+              <circle cx="12" cy="14" r="4"></circle>
+              <line x1="12" y1="6" x2="12.01" y2="6"></line>
+            </svg>
+          </div>
+          <span class="aniversario-feature-label">Som e luz</span>
+        </div>
+
+        <!-- Feature 3: Equipe operacional -->
+        <div class="aniversario-feature-card">
+          <div class="aniversario-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <span class="aniversario-feature-label">Equipe operacional</span>
+        </div>
+
+        <!-- Feature 4: Estacionamento -->
+        <div class="aniversario-feature-card">
+          <div class="aniversario-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="3" width="22" height="13" rx="2" ry="2"></rect>
+              <path d="M7 16H3v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2z"></path>
+              <path d="M21 16h-4v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2z"></path>
+              <path d="M14 8H10V6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2z"></path>
+              <circle cx="6" cy="12" r="1.5"></circle>
+              <circle cx="18" cy="12" r="1.5"></circle>
+            </svg>
+          </div>
+          <span class="aniversario-feature-label">Estacionamento</span>
+        </div>
+
+        <!-- Feature 5: Gerador -->
+        <div class="aniversario-feature-card">
+          <div class="aniversario-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <span class="aniversario-feature-label">Gerador</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 5: Gastronomia e Bar Split -->
+    <!-- Bloco 1: Gastronomia Personalizada -->
+    <section class="aniversario-gastronomy-split">
+      <div class="aniversario-gastronomy-info gastronomy-bg">
+        <div class="aniversario-gastronomy-overlay"></div>
+        <div class="aniversario-gastronomy-content">
+          <h3 class="aniversario-split-title">gastronomia personalizada</h3>
+          <p class="aniversario-split-desc">Menus criados de acordo com o seu perfil, acompanhando o conceito da sua comemoração.</p>
+        </div>
+      </div>
+      <div class="aniversario-gastronomy-carousel" id="gastronomy-carousel">
+        <div class="gastronomy-slide">
+          <Img src="gastromia1.avif" alt="Gastronomia 1" class="carousel-img" />
+        </div>
+        <div class="gastronomy-slide">
+          <Img src="gastronomia2.avif" alt="Gastronomia 2" class="carousel-img" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Bloco 2: Bar de Drinks -->
+    <section class="aniversario-gastronomy-split bar-drinks">
+      <div class="aniversario-gastronomy-carousel" id="drinks-carousel">
+        <div class="gastronomy-slide">
+          <Img src="drink-11.avif" alt="Bar de drinks 1" class="carousel-img" />
+        </div>
+        <div class="gastronomy-slide">
+          <Img src="drink-22.avif" alt="Bar de drinks 2" class="carousel-img" />
+        </div>
+      </div>
+      <div class="aniversario-gastronomy-info drinks-bg">
+        <div class="aniversario-gastronomy-overlay"></div>
+        <div class="aniversario-gastronomy-content">
+          <h3 class="aniversario-split-title">Bar de Drinks</h3>
+          <p class="aniversario-split-desc">Um serviço de bar completo, com drinks exclusivos e atendimento que acompanha cada momento da festa.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 6: Galeria Social (90% width, no border-radius) -->
+    <section class="aniversario-moments-section">
+      <div class="aniversario-moments-header">
+        <h2 class="aniversario-section-title">Momentos que marcaram nosso espaço</h2>
+        <p class="aniversario-moments-subtitle">Inspire-se em festas que já aconteceram aqui e veja como diferentes propostas ganham forma no Villa Cidade Jardim.</p>
+      </div>
+      <div class="aniversario-moments-grid">
+        <div class="aniversario-moments-item">
+          <Img src="MG_7433-1-scaled.avif" alt="Momento aniversário 1" />
+        </div>
+        <div class="aniversario-moments-item">
+          <Img src="MG_7302-scaled.avif" alt="Momento aniversário 2" />
+        </div>
+        <div class="aniversario-moments-item">
+          <Img src="MG_5474-1-scaled.avif" alt="Momento aniversário 3" />
+        </div>
+        <div class="aniversario-moments-item">
+          <Img src="MG_7485-scaled.avif" alt="Momento aniversário 4" />
+        </div>
+        <div class="aniversario-moments-item">
+          <Img src="MG_5478-1-1-scaled.avif" alt="Momento aniversário 5" />
+        </div>
+        <div class="aniversario-moments-item">
+          <Img src="MG_7377-1-scaled.avif" alt="Momento aniversário 6" />
+        </div>
+        <div class="aniversario-moments-item">
+          <Img src="MG_5444-scaled.avif" alt="Momento aniversário 7" />
+        </div>
+        <div class="aniversario-moments-item">
+          <Img src="MG_5664-scaled.avif" alt="Momento aniversário 8" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 7: Formulário de Contato -->
+    <section class="aniversario-contact-section" id="contato">
+      <div class="aniversario-contact-container">
+        <div class="aniversario-contact-left">
+          <h2 class="aniversario-contact-title">Vamos planejar juntos seu aniversário?</h2>
+          <p class="aniversario-contact-subtitle">Preencha o formulário para receber nosso contato.</p>
+        </div>
+        
+        <div class="aniversario-contact-right">
+          <LeadForm
+            formId="aniversario-form"
+            project={config.project_slug}
+            submitUrl={config.forms['lead-form'].webhooks[0]}
+            redirectUrl={config.forms['lead-form'].redirect_on_success}
+            submitText="ENVIAR SOLICITAÇÃO"
+            honeypot
+            prefix="aniversario-contato"
+            fields={[
+              { name: 'nome', type: 'text', placeholder: 'Nome', required: true },
+              {
+                type: 'row',
+                fields: [
+                  { name: 'telefone', type: 'tel', placeholder: 'WhatsApp', required: true },
+                  { name: 'email', type: 'email', placeholder: 'E-mail', required: true }
+                ]
+              },
+              {
+                name: 'tipo',
+                type: 'select',
+                required: true,
+                options: [
+                  { value: '', label: 'Tipo de evento:', disabled: true, selected: true },
+                  { value: 'Aniversário', label: 'Aniversário' },
+                  { value: 'Outros', label: 'Outros' }
+                ]
+              },
+              { name: 'data', type: 'text', placeholder: 'Data do Evento', required: true, id: 'aniversario-data-evento' },
+              { name: 'convidados', type: 'number', placeholder: 'N° de Pessoas', required: true },
+              { name: 'mensagem', type: 'textarea', placeholder: 'Detalhes adicionais: (Não obrigatório)', required: false }
+            ]}
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="aniversario-footer">
+    <div class="footer-container">
+      <div class="footer-copyright">
+        <p>© 2026 Villa Cidade Jardim - Todos os direitos reservados</p>
+      </div>
+      
+      <div class="footer-brand">
+        <Img src="logo_villa_cidade_jardim-semfundo.png" alt="Villa Cidade Jardim" class="footer-logo" />
+      </div>
+      
+      <div class="footer-developer">
+        <span>Desenvolvido por:</span>
+        <a href="http://dmove.com.br" target="_blank" rel="noopener noreferrer">
+          <Img src="Versao-Principal-Negativo-scaled-e1750426923582.avif" alt="Dmove" class="developer-logo" />
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Carrosséis de Gastronomia e Drinks (GSAP crossfade) -->
+  <script>
+    import gsap from 'gsap';
+
+    function initCrossfade(el: Element) {
+      const slides = el.querySelectorAll<HTMLElement>('.gastronomy-slide');
+      if (slides.length < 2) return;
+
+      gsap.set(slides, { position: 'absolute', inset: 0, opacity: 0 });
+      gsap.set(slides[0], { opacity: 1 });
+
+      let current = 0;
+
+      function next() {
+        const from = slides[current];
+        current = (current + 1) % slides.length;
+        const to = slides[current];
+        gsap.to(from, { opacity: 0, duration: 1.2, ease: 'power2.inOut' });
+        gsap.to(to,   { opacity: 1, duration: 1.2, ease: 'power2.inOut' });
+      }
+
+      setInterval(next, 4000);
+    }
+
+    document.querySelectorAll('.aniversario-gastronomy-carousel').forEach(initCrossfade);
+  </script>
+
+  <!-- Flatpickr Script & Efeitos de Scroll -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Calendário Flatpickr
+      const dateInput = document.getElementById('aniversario-data-evento');
+      if (dateInput && window.flatpickr) {
+        window.flatpickr(dateInput, {
+          dateFormat: "d/m/Y",
+          locale: "pt",
+          disableMobile: "true"
+        });
+      }
+
+      // 2. Cabeçalho Fixo dinâmico
+      const header = document.getElementById('meu-header-fixo');
+      const hero = document.getElementById('hero-aniversario');
+      if (header && hero) {
+        window.addEventListener('scroll', () => {
+          const heroHeight = hero.offsetHeight;
+          if (window.scrollY > 100) {
+            header.classList.add('cor-ativa');
+          } else {
+            header.classList.remove('cor-ativa');
+          }
+        });
+      }
+    });
+  </script>
+</Base>

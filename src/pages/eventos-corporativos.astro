@@ -1,0 +1,405 @@
+---
+// Gerado a partir de: eventos-corporativos.html
+import { Fragment } from 'astro/jsx-runtime';
+import Base from '../layouts/Base.astro';
+import config from '../../config.json';
+import Img from '../components/ui/Img.astro';
+import LeadForm from '../components/forms/LeadForm.astro';
+import '../styles/eventos-corporativos.css';
+---
+
+<Base
+  title="Eventos Corporativos — Villa Cidade Jardim"
+  description="Realize seu evento corporativo no espaço mais privilegiado de São Paulo. Estrutura completa, excelência operacional e alta gastronomia."
+  ogImage="/images/og-default.jpg"
+  canonical="https://villacidadejd.com.br/eventos-corporativos/"
+  whatsappEventTypes={[
+    { value: 'Confraternização corporativa',         label: 'Confraternização corporativa'         },
+    { value: 'Corporativo',                          label: 'Corporativo'                          },
+    { value: 'Feiras e Exposições',                  label: 'Feiras e Exposições'                  },
+    { value: 'Happy Hours',                          label: 'Happy Hours'                          },
+    { value: 'Masterclass e Palestras',              label: 'Masterclass e Palestras'              },
+    { value: 'Mentorias e Treinamentos',             label: 'Mentorias e Treinamentos'             },
+    { value: 'Offsite corporativo',                  label: 'Offsite corporativo'                  },
+    { value: 'Reuniões de Networking',               label: 'Reuniões de Networking'               },
+    { value: 'Shows e Festivais',                    label: 'Shows e Festivais'                    },
+    { value: 'Workshops, Conferências e Seminários', label: 'Workshops, Conferências e Seminários' },
+    { value: 'Outros',                               label: 'Outros'                               },
+  ]}
+  whatsappStep2Extra={[
+    { name: 'empresa', placeholder: 'Empresa', type: 'text' },
+  ]}
+>
+  <Fragment slot="head">
+    <!-- Flatpickr CSS & JS para Calendários -->
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css" />
+    <script is:inline src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+  </Fragment>
+
+  <main>
+    <!-- Seção Hero com Form Split -->
+    <section class="eventos-hero">
+      <div class="eventos-hero-container">
+        <!-- Coluna Esquerda: Texto e Identidade -->
+        <div class="eventos-hero-left">
+          <div class="hero-logo-wrapper">
+            <Img src="logo_villa_cidade_jardim-semfundo.png" alt="Villa Cidade Jardim Logo" class="hero-logo-img" priority />
+          </div>
+          <h1 class="eventos-hero-title">Realize seu evento<br class="mobile-br" /> corporativo no espaço<br class="mobile-br" /> de eventos mais<br class="mobile-br" /> privilegiado de<br class="mobile-br" /> São Paulo</h1>
+          <p class="eventos-hero-subtitle">No Villa Cidade Jardim, seu evento ganha excelência, estrutura completa e gastronomia de alto padrão.</p>
+        </div>
+
+        <!-- Coluna Direita: Captura Card -->
+        <div class="eventos-hero-right">
+          <div class="eventos-form-card hero-form">
+            <h2 class="eventos-form-title">Conte sua ideia. Nós a transformaremos em realidade.</h2>
+            <div class="eventos-form-divider"></div>
+            <LeadForm
+              formId="form_eventos_hero"
+              project={config.project_slug}
+              submitUrl={config.forms['lead-form'].webhooks[0]}
+              redirectUrl={config.forms['lead-form'].redirect_on_success}
+              submitText="ENVIAR SOLICITAÇÃO"
+              honeypot
+              prefix="eventos-hero"
+              fields={[
+                {
+                  type: 'row',
+                  fields: [
+                    { name: 'nome', type: 'text', placeholder: 'Nome', required: true },
+                    { name: 'empresa', type: 'text', placeholder: 'Empresa', required: true }
+                  ]
+                },
+                {
+                  type: 'row',
+                  fields: [
+                    { name: 'telefone', type: 'tel', placeholder: 'WhatsApp', required: true },
+                    { name: 'email', type: 'email', placeholder: 'E-mail', required: true }
+                  ]
+                },
+                {
+                  name: 'tipo',
+                  type: 'select',
+                  required: true,
+                  options: [
+                    { value: '', label: 'Tipo de evento:', disabled: true, selected: true },
+                    { value: 'Confraternização corporativa', label: 'Confraternização corporativa' },
+                    { value: 'Corporativo', label: 'Corporativo' },
+                    { value: 'Feiras e Exposições', label: 'Feiras e Exposições' },
+                    { value: 'Happy Hours', label: 'Happy Hours' },
+                    { value: 'Masterclass e Palestras', label: 'Masterclass e Palestras' },
+                    { value: 'Mentorias e Treinamentos', label: 'Mentorias e Treinamentos' },
+                    { value: 'Offsite corporativo', label: 'Offsite corporativo' },
+                    { value: 'Reuniões de Networking', label: 'Reuniões de Networking' },
+                    { value: 'Shows e Festivais', label: 'Shows e Festivais' },
+                    { value: 'Workshops, Conferências e Seminários', label: 'Workshops, Conferências e Seminários' },
+                    { value: 'Outros', label: 'Outros' }
+                  ]
+                },
+                { name: 'data', type: 'text', placeholder: 'Data do Evento', required: true, id: 'eventos-data-hero', readonly: true },
+                { name: 'convidados', type: 'number', placeholder: 'N° de Pessoas', required: true },
+                { name: 'mensagem', type: 'textarea', placeholder: 'Detalhes adicionais: (Não obrigatório)', required: false, rows: 3 }
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 2: Conheça nosso Espaço (Split Section) -->
+    <section class="eventos-split-section">
+      <div class="eventos-split-image">
+        <Img src="MG_6962-scaled.avif" alt="Espaço Villa Cidade Jardim" />
+      </div>
+      <div class="eventos-split-text-container">
+        <div class="eventos-split-text-content">
+          <h2 class="eventos-section-title">CONHEÇA o NOSSO ESPAÇO de eventos!</h2>
+          <p class="eventos-section-text">
+            Desde 2013, o Villa se dedica a oferecer experiências gastronômicas e eventos corporativos com excelência e hospitalidade. Integrado ao Shopping Cidade Jardim, nosso espaço reúne estrutura completa, equipe especializada e uma operation ágil e padronizada para entregar eventos impecáveis.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 3: O cenário perfeito para sua celebração (Galeria de Destaques) -->
+    <section class="eventos-gallery-section">
+      <div class="eventos-gallery-header">
+        <h2 class="eventos-section-title">O cenário perfeito para sua celebração</h2>
+        <p class="eventos-gallery-subtitle">Oferecemos um espaço de eventos completo, proporcionando eventos impecáveis em um ambiente versátil e sofisticado.</p>
+      </div>
+
+      <div class="eventos-gallery-grid">
+        <div class="eventos-gallery-item">
+          <Img src="MG_7054-scaled.avif" alt="Evento Villa Cidade Jardim - Foto 1" />
+          <div class="eventos-gallery-overlay"></div>
+        </div>
+        <div class="eventos-gallery-item">
+          <Img src="Design-sem-nome.avif" alt="Evento Villa Cidade Jardim - Foto 2" />
+          <div class="eventos-gallery-overlay"></div>
+        </div>
+        <div class="eventos-gallery-item">
+          <Img src="MG_7121-scaled.avif" alt="Evento Villa Cidade Jardim - Foto 3" />
+          <div class="eventos-gallery-overlay"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 4: Características / Diferenciais -->
+    <section class="eventos-features-section">
+      <h2 class="eventos-features-title">Cuidamos de cada detalhe do seu evento corporativo</h2>
+      <p class="eventos-features-subtitle">Os seus convidados terão uma experiência premium do início ao fim.</p>
+
+      <div class="eventos-features-grid">
+        <!-- Item 1: Equipe operacional -->
+        <div class="eventos-feature-card">
+          <div class="eventos-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <span class="eventos-feature-label">Equipe<br/>operacional</span>
+        </div>
+
+        <!-- Item 2: Mobiliário Completo -->
+        <div class="eventos-feature-card">
+          <div class="eventos-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"></path>
+              <path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v5z"></path>
+              <path d="M6 18v3"></path>
+              <path d="M18 18v3"></path>
+            </svg>
+          </div>
+          <span class="eventos-feature-label">Mobiliário<br/>Completo</span>
+        </div>
+
+        <!-- Item 3: Bar de Drinks -->
+        <div class="eventos-feature-card">
+          <div class="eventos-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 22h8"></path>
+              <path d="M12 11v11"></path>
+              <path d="m19 3-7 8-7-8Z"></path>
+            </svg>
+          </div>
+          <span class="eventos-feature-label">Bar de<br/>Drinks</span>
+        </div>
+
+        <!-- Item 4: Decoração -->
+        <div class="eventos-feature-card">
+          <div class="eventos-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 2a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4z"></path>
+              <path d="M12 14a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4z"></path>
+              <path d="M2 12a4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4z"></path>
+              <path d="M14 12a4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4z"></path>
+            </svg>
+          </div>
+          <span class="eventos-feature-label">Decoração</span>
+        </div>
+
+        <!-- Item 5: Som e luz -->
+        <div class="eventos-feature-card">
+          <div class="eventos-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+              <circle cx="12" cy="14" r="4"></circle>
+              <line x1="12" y1="6" x2="12.01" y2="6"></line>
+            </svg>
+          </div>
+          <span class="eventos-feature-label">Som e luz</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 5: Alta Gastronomia -->
+    <section class="eventos-gastronomy-section">
+      <div class="eventos-gastronomy-text-container">
+        <div class="eventos-gastronomy-text-content">
+          <h2 class="eventos-gastronomy-title">Gastronomia</h2>
+          <p class="eventos-gastronomy-text">
+            Nossa gastronomia é uma experiência à parte. Cada criação é elaborada para unir sabor, estética e equilíbrio. Mais do que refeições, oferecemos um toque de refinamento à sua ocasião.
+          </p>
+        </div>
+      </div>
+      <div class="eventos-gastronomy-carousel">
+        <div class="eventos-carousel-slide active">
+          <Img src="MG_7335-1-scaled.avif" alt="Gastronomia Villa Cidade Jardim 1" />
+        </div>
+        <div class="eventos-carousel-slide">
+          <Img src="MG_7133-scaled.avif" alt="Gastronomia Villa Cidade Jardim 2" />
+        </div>
+        <div class="eventos-carousel-slide">
+          <Img src="MG_5546-scaled.avif" alt="Gastronomia Villa Cidade Jardim 3" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 6: Memórias Construídas (Grid de Fotos de Eventos) -->
+    <section class="eventos-memories-section">
+      <div class="eventos-memories-header">
+        <h2 class="eventos-section-title">Memórias construídas no villa cidade jardim</h2>
+        <p class="eventos-memories-subtitle">Pronto para criar resultados assim? Aqui, isso é possível!</p>
+      </div>
+
+      <div class="eventos-memories-grid">
+        <div class="eventos-memories-item">
+          <Img src="MG_5449-scaled.avif" alt="Evento Corporativo no Villa - Memória 1" />
+          <div class="eventos-memories-overlay"></div>
+        </div>
+        <div class="eventos-memories-item">
+          <Img src="MG_5655-scaled.avif" alt="Evento Corporativo no Villa - Memória 2" />
+          <div class="eventos-memories-overlay"></div>
+        </div>
+        <div class="eventos-memories-item">
+          <Img src="MG_7485-scaled.avif" alt="Evento Corporativo no Villa - Memória 3" />
+          <div class="eventos-memories-overlay"></div>
+        </div>
+        <div class="eventos-memories-item">
+          <Img src="MG_7433-scaled.avif" alt="Evento Corporativo no Villa - Memória 4" />
+          <div class="eventos-memories-overlay"></div>
+        </div>
+        <div class="eventos-memories-item">
+          <Img src="MG_5667-scaled.avif" alt="Evento Corporativo no Villa - Memória 5" />
+          <div class="eventos-memories-overlay"></div>
+        </div>
+        <div class="eventos-memories-item">
+          <Img src="MG_5535-scaled.avif" alt="Evento Corporativo no Villa - Memória 6" />
+          <div class="eventos-memories-overlay"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 7: Contato -->
+    <section class="eventos-contact-section" id="contato">
+      <div class="eventos-contact-container">
+        <!-- Coluna Esquerda: Texto -->
+        <div class="eventos-contact-info">
+          <h2 class="eventos-contact-title">Comece a planejar seu evento corporativo hoje!</h2>
+          <p class="eventos-contact-subtitle">Preencha o formulário para receber nosso contato.</p>
+        </div>
+
+        <!-- Coluna Direita: Captura Card -->
+        <div class="eventos-form-card contact-form">
+          <h2 class="eventos-form-title">Conte sua ideia. Nós a transformaremos em realidade.</h2>
+          <div class="eventos-form-divider"></div>
+          <LeadForm
+            formId="form_eventos_contato"
+            project={config.project_slug}
+            submitUrl={config.forms['lead-form'].webhooks[0]}
+            redirectUrl={config.forms['lead-form'].redirect_on_success}
+            submitText="ENVIAR SOLICITAÇÃO"
+            honeypot
+            prefix="eventos-contato"
+            fields={[
+              {
+                type: 'row',
+                fields: [
+                  { name: 'nome', type: 'text', placeholder: 'Nome', required: true },
+                  { name: 'empresa', type: 'text', placeholder: 'Empresa', required: true }
+                ]
+              },
+              {
+                type: 'row',
+                fields: [
+                  { name: 'telefone', type: 'tel', placeholder: 'WhatsApp', required: true },
+                  { name: 'email', type: 'email', placeholder: 'E-mail', required: true }
+                ]
+              },
+              {
+                name: 'tipo',
+                type: 'select',
+                required: true,
+                options: [
+                  { value: '', label: 'Tipo de evento:', disabled: true, selected: true },
+                  { value: 'Confraternização corporativa', label: 'Confraternização corporativa' },
+                  { value: 'Corporativo', label: 'Corporativo' },
+                  { value: 'Feiras e Exposições', label: 'Feiras e Exposições' },
+                  { value: 'Happy Hours', label: 'Happy Hours' },
+                  { value: 'Masterclass e Palestras', label: 'Masterclass e Palestras' },
+                  { value: 'Mentorias e Treinamentos', label: 'Mentorias e Treinamentos' },
+                  { value: 'Offsite corporativo', label: 'Offsite corporativo' },
+                  { value: 'Reuniões de Networking', label: 'Reuniões de Networking' },
+                  { value: 'Shows e Festivais', label: 'Shows e Festivais' },
+                  { value: 'Workshops, Conferências e Seminários', label: 'Workshops, Conferências e Seminários' },
+                  { value: 'Outros', label: 'Outros' }
+                ]
+              },
+              { name: 'data', type: 'text', placeholder: 'Data do Evento', required: true, id: 'eventos-data-contato', readonly: true },
+              { name: 'convidados', type: 'number', placeholder: 'N° de Pessoas', required: true },
+              { name: 'mensagem', type: 'textarea', placeholder: 'Detalhes adicionais: (Não obrigatório)', required: false, rows: 3 }
+            ]}
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="eventos-footer">
+    <div class="footer-container">
+      <div class="footer-copyright">
+        <p>© 2026 Villa Cidade Jardim - Todos os direitos reservados</p>
+      </div>
+      
+      <div class="footer-brand">
+        <Img src="logo_villa_cidade_jardim-semfundo.png" alt="Villa Cidade Jardim" class="footer-logo" />
+      </div>
+      
+      <div class="footer-developer">
+        <span>Desenvolvido por:</span>
+        <a href="http://dmove.com.br" target="_blank" rel="noopener noreferrer">
+          <Img src="Versao-Principal-Negativo-scaled-e1750426923582.avif" alt="Dmove" class="developer-logo" />
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Flatpickr & Carousel Scripts -->
+  <script is:inline>
+    // 1. Inicialização do Calendário Flatpickr
+    document.addEventListener('DOMContentLoaded', () => {
+      const flatpickrConfig = {
+        disableMobile: true,
+        dateFormat: 'd/m/Y',
+        locale: {
+          weekdays: {
+            shorthand: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+            longhand: ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
+          },
+          months: {
+            shorthand: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            longhand: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+          },
+          firstDayOfWeek: 1,
+          ordinal: () => 'º',
+        },
+      };
+
+      const dateHeroInput = document.getElementById('eventos-data-hero');
+      const dateContactInput = document.getElementById('eventos-data-contato');
+
+      if (window.flatpickr) {
+        if (dateHeroInput) window.flatpickr(dateHeroInput, flatpickrConfig);
+        if (dateContactInput) window.flatpickr(dateContactInput, flatpickrConfig);
+      }
+    });
+
+    // 2. Carrossel da Gastronomia (Transição de slides)
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.eventos-carousel-slide');
+      if (slides.length > 1) {
+        let currentIndex = 0;
+        setInterval(() => {
+          slides[currentIndex].classList.remove('active');
+          currentIndex = (currentIndex + 1) % slides.length;
+          slides[currentIndex].classList.add('active');
+        }, 4000);
+      }
+    });
+  </script>
+</Base>

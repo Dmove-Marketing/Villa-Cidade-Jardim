@@ -10,6 +10,8 @@ import '@fontsource/montserrat/800.css';
 import GTMHead from '../components/tracking/GTMHead.astro';
 import GTMBody from '../components/tracking/GTMBody.astro';
 import UTMCapture from '../components/tracking/UTMCapture.astro';
+import WhatsAppModal from '../components/layout/WhatsAppModal.astro';
+
 
 interface Props {
   title: string;
@@ -19,6 +21,8 @@ interface Props {
   noIndex?: boolean;
   theme?: 'dark' | 'light';
   jsonLd?: Record<string, any>;
+  whatsappEventTypes?: { value: string; label: string }[];
+  whatsappStep2Extra?: { name: string; placeholder: string; type?: string }[];
 }
 
 const {
@@ -29,6 +33,8 @@ const {
   noIndex = false,
   theme = 'dark',
   jsonLd,
+  whatsappEventTypes,
+  whatsappStep2Extra,
 } = Astro.props;
 
 import config from '../../config.json';
@@ -86,6 +92,12 @@ const defaultJsonLd = {
 
     <!-- Conteúdo da página -->
     <slot />
+
+    <!-- WhatsApp Flutuante — configurar em config.json > whatsapp -->
+    <WhatsAppModal
+      eventTypes={whatsappEventTypes}
+      step2Extra={whatsappStep2Extra}
+    />
 
     <!-- Scripts adicionais -->
     <slot name="scripts" />

@@ -1,0 +1,735 @@
+---
+// WhatsAppModal.astro — Botão flutuante + popup multi-etapas estilo WhatsApp
+// Configuração: config.json > whatsapp.{ phone, display_name, avatar, enabled }
+// Props: eventTypes e step2Extra são passados pelo Base.astro de cada página.
+
+import config from '../../../config.json';
+
+interface EventType {
+  value: string;
+  label: string;
+}
+
+interface ExtraField {
+  name: string;
+  placeholder: string;
+  type?: string;
+}
+
+interface Props {
+  eventTypes?: EventType[];
+  welcomeMessage?: string;
+  step2Extra?: ExtraField[];
+}
+
+const {
+  eventTypes = [
+    { value: 'Casamento',   label: 'Casamento'   },
+    { value: 'Aniversário', label: 'Aniversário' },
+    { value: 'Corporativo', label: 'Corporativo' },
+    { value: 'Outros',      label: 'Outros'      },
+  ],
+  welcomeMessage = 'Olá! 👋\nPreencha as informações abaixo e iniciaremos nossa conversa no WhatsApp.\nEstamos ansiosos para ajudar no seu evento! 🎉',
+  step2Extra = [],
+} = Astro.props;
+
+const waPhone    = config.whatsapp?.phone        || '5511999999999';
+const waName     = config.whatsapp?.display_name || config.project_name || 'Atendimento';
+const waAvatar   = config.whatsapp?.avatar       || '/images/whatsapp-avatar.jpg';
+const waEnabled  = config.whatsapp?.enabled !== false;
+
+const webhookUrl  = config.forms['lead-form']?.webhooks[0] || '';
+const projectSlug = config.project_slug || '';
+
+const welcomeLines = welcomeMessage.split('\n');
+---
+
+{waEnabled && (
+<div class="wa-wrapper">
+
+  <!-- ── Botão Flutuante ──────────────────────────────────────────────────── -->
+  <button id="wa-floating-btn" class="wa-floating-btn"
+    aria-label="Falar pelo WhatsApp" title={`Falar pelo WhatsApp com ${waName}`}>
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.731-1.464L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.403.002 9.789-4.382 9.792-9.791.001-2.621-1.013-5.086-2.856-6.93C16.368 2.05 13.91 1.037 11.29 1.037c-5.4.001-9.79 4.384-9.793 9.793-.001 1.514.469 2.989 1.359 4.265l-.993 3.624 3.704-.971zm10.73-6.52c-.296-.148-1.748-.862-2.019-.962-.27-.099-.467-.148-.663.149-.197.296-.764.962-.937 1.16-.172.197-.344.222-.64.074-.296-.148-1.25-.46-2.381-1.468-.881-.785-1.475-1.756-1.648-2.052-.172-.296-.018-.456.13-.603.133-.132.296-.346.444-.519.148-.173.197-.296.296-.494.099-.198.05-.37-.025-.519-.074-.148-.663-1.6-.908-2.192-.239-.575-.483-.497-.663-.506-.172-.008-.37-.01-.566-.01s-.514.074-.783.37c-.27.296-1.03 1.008-1.03 2.46s1.056 2.852 1.203 3.05c.148.197 2.078 3.173 5.032 4.45.703.303 1.25.485 1.678.621.706.224 1.348.193 1.857.117.567-.084 1.748-.713 1.995-1.4.246-.688.246-1.28.172-1.4-.074-.122-.271-.19-.567-.34z"/>
+    </svg>
+  </button>
+
+  <!-- ── Modal Overlay ────────────────────────────────────────────────────── -->
+  <div id="wa-modal-overlay" class="wa-modal-overlay" role="dialog" aria-modal="true" aria-label="Contato via WhatsApp">
+    <div class="wa-modal-card">
+
+      <!-- Header (verde escuro WhatsApp) -->
+      <div class="wa-header">
+        <div class="wa-header-left">
+          <div class="wa-avatar">
+            <img src={waAvatar} alt={waName} class="wa-avatar-img" loading="lazy" />
+            <span class="wa-online-dot" aria-hidden="true"></span>
+          </div>
+          <div class="wa-header-info">
+            <span class="wa-name">{waName}</span>
+            <span class="wa-status">Online</span>
+          </div>
+        </div>
+        <button id="wa-close-btn" class="wa-close-btn" aria-label="Fechar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Body (fundo bege do chat) -->
+      <div class="wa-body">
+
+        <!-- Bolha de boas-vindas (mensagem recebida) -->
+        <div class="wa-bubble" role="note">
+          {welcomeLines.map((line) => <p>{line}</p>)}
+          <span class="wa-bubble-time" aria-hidden="true">
+            {new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
+          </span>
+        </div>
+
+        <!-- Card do formulário multi-etapas -->
+        <div class="wa-form-card">
+          <span class="wa-step-label" id="wa-step-label" aria-live="polite">Etapa 1 de 2</span>
+
+          <form id="wa-multistep-form" class="wa-form" novalidate>
+            <!-- Honeypot -->
+            <input type="text" name="website" tabindex="-1" aria-hidden="true" style="display:none" autocomplete="off" />
+
+            <!-- ── Etapa 1: Dados do evento ── -->
+            <div id="wa-step-1" class="wa-step active">
+              <div class="wa-form-group">
+                <select name="tipo" id="wa-tipo" required class="wa-input">
+                  <option value="" disabled selected>Tipo de evento</option>
+                  {eventTypes.map((opt) => (
+                    <option value={opt.value}>{opt.label}</option>
+                  ))}
+                </select>
+              </div>
+              <div class="wa-form-group">
+                <input type="text" name="data" id="wa-data" placeholder="Data do evento" required class="wa-input" readonly autocomplete="off" />
+              </div>
+              <div class="wa-form-group">
+                <input type="number" name="convidados" id="wa-convidados" placeholder="N° de convidados" required class="wa-input" min="1" />
+              </div>
+              <button type="button" id="wa-next-btn" class="wa-btn wa-btn-primary">
+                Seguir
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+
+            <!-- ── Etapa 2: Dados de contato ── -->
+            <div id="wa-step-2" class="wa-step">
+              <div class="wa-form-group">
+                <input type="text" name="nome" id="wa-nome" placeholder="Nome completo" required class="wa-input" autocomplete="name" />
+              </div>
+              {step2Extra.map((field) => (
+                <div class="wa-form-group">
+                  <input
+                    type={field.type || 'text'}
+                    name={field.name}
+                    placeholder={field.placeholder}
+                    required
+                    class="wa-input"
+                  />
+                </div>
+              ))}
+              <div class="wa-form-group">
+                <input type="email" name="email" id="wa-email" placeholder="E-mail" required class="wa-input" autocomplete="email" />
+              </div>
+              <div class="wa-form-group">
+                <input type="tel" name="telefone" id="wa-telefone" placeholder="WhatsApp (com DDD)" required class="wa-input" autocomplete="tel" />
+              </div>
+              <div class="wa-btn-row">
+                <button type="button" id="wa-prev-btn" class="wa-btn wa-btn-secondary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                  Voltar
+                </button>
+                <button type="submit" id="wa-submit-btn" class="wa-btn wa-btn-primary">
+                  <span class="btn-text">Iniciar conversa</span>
+                  <span class="btn-loading" style="display:none" aria-hidden="true">
+                    <svg class="wa-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/>
+                    </svg>
+                    Conectando…
+                  </span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div><!-- /wa-body -->
+    </div><!-- /wa-modal-card -->
+  </div><!-- /wa-modal-overlay -->
+
+</div>
+)}
+
+<script is:inline define:vars={{ webhookUrl, projectSlug, waPhone, step2Extra }}>
+document.addEventListener('DOMContentLoaded', () => {
+  const floatBtn   = document.getElementById('wa-floating-btn');
+  const overlay    = document.getElementById('wa-modal-overlay');
+  const closeBtn   = document.getElementById('wa-close-btn');
+  const step1      = document.getElementById('wa-step-1');
+  const step2      = document.getElementById('wa-step-2');
+  const stepLabel  = document.getElementById('wa-step-label');
+  const nextBtn    = document.getElementById('wa-next-btn');
+  const prevBtn    = document.getElementById('wa-prev-btn');
+  const form       = document.getElementById('wa-multistep-form');
+  const phoneInput = document.getElementById('wa-telefone');
+  const dateInput  = document.getElementById('wa-data');
+
+  if (!floatBtn || !overlay || !form) return;
+
+  // ── Abre modal ──────────────────────────────────────────────────────────
+  floatBtn.addEventListener('click', () => {
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    if (dateInput && !dateInput._flatpickr && window.flatpickr) {
+      window.flatpickr(dateInput, {
+        disableMobile: true,
+        dateFormat: 'd/m/Y',
+        locale: {
+          weekdays: {
+            shorthand: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+            longhand:  ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'],
+          },
+          months: {
+            shorthand: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+            longhand:  ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+          },
+          firstDayOfWeek: 1,
+          ordinal: () => 'º',
+        },
+      });
+    }
+  });
+
+  // ── Fecha modal ─────────────────────────────────────────────────────────
+  function closeModal() {
+    overlay.classList.remove('active');
+    document.body.style.removeProperty('overflow');
+    step1.classList.add('active');
+    step2.classList.remove('active');
+    if (stepLabel) stepLabel.textContent = 'Etapa 1 de 2';
+    form.reset();
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  // ── Máscara de telefone ──────────────────────────────────────────────────
+  if (phoneInput) {
+    phoneInput.addEventListener('input', (e) => {
+      let v = e.target.value.replace(/\D/g, '');
+      if (v.length > 11) v = v.slice(0, 11);
+      if (v.length > 7)      v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+      else if (v.length > 2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+      else if (v.length > 0) v = `(${v}`;
+      e.target.value = v;
+    });
+  }
+
+  // ── Validação ────────────────────────────────────────────────────────────
+  function validateFields(fields) {
+    let valid = true, firstInvalid = null;
+    fields.forEach((field) => {
+      const val = field.value.trim();
+      const empty = !val || (field.tagName === 'SELECT' && val === '');
+      if (empty) {
+        valid = false;
+        field.classList.add('wa-input-error');
+        if (!firstInvalid) firstInvalid = field;
+        const clear = () => {
+          field.classList.remove('wa-input-error');
+          field.removeEventListener('input', clear);
+          field.removeEventListener('change', clear);
+        };
+        field.addEventListener('input', clear);
+        field.addEventListener('change', clear);
+      }
+    });
+    if (!valid && firstInvalid) firstInvalid.focus();
+    return valid;
+  }
+
+  // ── Navegação entre etapas ───────────────────────────────────────────────
+  nextBtn.addEventListener('click', () => {
+    const inputs = Array.from(step1.querySelectorAll('input[required], select[required]'));
+    if (!validateFields(inputs)) return;
+    step1.classList.remove('active');
+    step2.classList.add('active');
+    if (stepLabel) stepLabel.textContent = 'Etapa 2 de 2';
+  });
+
+  prevBtn.addEventListener('click', () => {
+    step2.classList.remove('active');
+    step1.classList.add('active');
+    if (stepLabel) stepLabel.textContent = 'Etapa 1 de 2';
+  });
+
+  // ── Envio ────────────────────────────────────────────────────────────────
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const inputs = Array.from(step2.querySelectorAll('input[required]'));
+    if (!validateFields(inputs)) return;
+
+    const phoneDigits = phoneInput.value.replace(/\D/g, '');
+    if (phoneDigits.length !== 11 || phoneDigits.charAt(2) !== '9') {
+      phoneInput.classList.add('wa-input-error');
+      phoneInput.focus();
+      return;
+    }
+
+    const submitBtn  = document.getElementById('wa-submit-btn');
+    const btnText    = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+    submitBtn.disabled = true;
+    if (btnText)    btnText.style.display    = 'none';
+    if (btnLoading) btnLoading.style.display = 'inline-flex';
+
+    const formData   = new FormData(form);
+    const data       = {};
+    formData.forEach((v, k) => { if (k !== 'website') data[k] = v.toString(); });
+
+    // Mapeamento explícito → padrão n8n Dmove
+    const FIELD_MAP = { telefone: 'WhatsApp', email: 'E-mail', tipo: 'Tipo de evento', data: 'Data do evento' };
+    const capitalized = {};
+    Object.entries(data).forEach(([k, v]) => {
+      capitalized[FIELD_MAP[k] ?? (k.charAt(0).toUpperCase() + k.slice(1))] = v;
+    });
+
+    const trackingRaw = sessionStorage.getItem('dmove_tracking');
+    const tracking    = trackingRaw ? JSON.parse(trackingRaw) : {};
+    const trackKeys   = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content',
+                         'utm_id','gclid','gbraid','wbraid','fbclid','ttclid','msclkid','sck',
+                         'fbc','fbp','external_id','event_id'];
+    const qs = new URLSearchParams();
+    trackKeys.forEach((k) => { if (tracking[k]) qs.set(k, tracking[k]); });
+
+    const pathname  = window.location.pathname.replace(/\/$/, '') || '/';
+    const fonteBase = 'WhatsApp' + pathname;
+    const fonte     = qs.toString() ? `${fonteBase}?${qs.toString()}` : fonteBase;
+
+    const now = new Date();
+    const payload = {
+      ...capitalized,
+      Fonte:        fonte,
+      Date:         now.toLocaleDateString('pt-BR'),
+      Time:         now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+      'Page URL':   window.location.href,
+      'User Agent': navigator.userAgent,
+      'Remote IP':  '',
+      'Powered by': 'Dmove',
+      form_id:      'form_whatsapp',
+      form_name:    'form_whatsapp',
+    };
+
+    try {
+      if (webhookUrl) {
+        await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+      }
+    } catch (err) {
+      console.error('[WhatsApp Form]', err);
+    }
+
+    if (window.dataLayer) {
+      window.dataLayer.push({ event: 'form_submit', form_id: 'form_whatsapp', project: projectSlug, ...capitalized });
+    }
+
+    // Mensagem pré-preenchida — inclui campos extras (ex: empresa)
+    const extraLines = (step2Extra || [])
+      .filter((f) => data[f.name])
+      .map((f) => `*${f.placeholder}:* ${data[f.name]}`);
+
+    const msgLines = [
+      'Olá, gostaria de solicitar um orçamento para meu evento!',
+      '',
+      `*Tipo:* ${data.tipo || ''}`,
+      `*Data:* ${data.data || ''}`,
+      `*Convidados:* ${data.convidados || ''}`,
+      `*Nome:* ${data.nome || ''}`,
+      ...extraLines,
+      `*E-mail:* ${data.email || ''}`,
+    ];
+
+    const waUrl = `https://api.whatsapp.com/send?phone=${waPhone}&text=${encodeURIComponent(msgLines.join('\n'))}`;
+
+    setTimeout(() => {
+      closeModal();
+      submitBtn.disabled = false;
+      if (btnText)    btnText.style.display    = 'inline';
+      if (btnLoading) btnLoading.style.display = 'none';
+      window.open(waUrl, '_blank');
+    }, 400);
+  });
+});
+</script>
+
+<style>
+/* ── Botão Flutuante ──────────────────────────────────────────────────────── */
+.wa-floating-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #25d366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
+  animation: wa-pulse 2.5s infinite;
+  z-index: 9999;
+}
+
+.wa-floating-btn:hover {
+  transform: scale(1.1);
+  background-color: #20ba5a;
+  animation-play-state: paused;
+}
+
+@keyframes wa-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(37, 211, 102, 0.65); }
+  70%  { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0);   }
+  100% { box-shadow: 0 0 0 0   rgba(37, 211, 102, 0);    }
+}
+
+/* ── Overlay ──────────────────────────────────────────────────────────────── */
+.wa-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0 24px 100px 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 10000;
+}
+
+.wa-modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── Card ─────────────────────────────────────────────────────────────────── */
+.wa-modal-card {
+  width: 100%;
+  max-width: 360px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.35);
+  transform: translateY(24px) scale(0.96);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 120px);
+}
+
+.wa-modal-overlay.active .wa-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+/* ── Header (verde escuro WhatsApp) ───────────────────────────────────────── */
+.wa-header {
+  background-color: #075e54;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.wa-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wa-avatar {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+}
+
+.wa-avatar-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #128c7e;
+}
+
+.wa-online-dot {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 11px;
+  height: 11px;
+  background-color: #25d366;
+  border: 2px solid #075e54;
+  border-radius: 50%;
+}
+
+.wa-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.wa-name {
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.wa-status {
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.01em;
+}
+
+.wa-close-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.wa-close-btn:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ── Body (fundo bege do chat) ────────────────────────────────────────────── */
+.wa-body {
+  background-color: #efeae2;
+  padding: 16px 12px;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* scrollbar discreta */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.15) transparent;
+}
+
+/* ── Bolha de boas-vindas (mensagem recebida) ─────────────────────────────── */
+.wa-bubble {
+  background-color: #fff;
+  border-radius: 0 10px 10px 10px;
+  padding: 10px 12px 6px;
+  max-width: 88%;
+  align-self: flex-start;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  position: relative;
+}
+
+.wa-bubble::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 8px 8px 0;
+  border-color: transparent #fff transparent transparent;
+}
+
+.wa-bubble p {
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.83rem;
+  line-height: 1.5;
+  color: #303030;
+  margin-bottom: 2px;
+}
+
+.wa-bubble p:last-of-type { margin-bottom: 4px; }
+
+.wa-bubble-time {
+  font-size: 0.68rem;
+  color: #8696a0;
+  display: block;
+  text-align: right;
+  margin-top: 2px;
+}
+
+/* ── Card do formulário ───────────────────────────────────────────────────── */
+.wa-form-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wa-step-label {
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8696a0;
+}
+
+/* ── Steps ────────────────────────────────────────────────────────────────── */
+.wa-form {
+  display: contents;
+}
+
+.wa-step {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wa-step.active {
+  display: flex;
+  animation: wa-step-in 0.25s ease;
+}
+
+@keyframes wa-step-in {
+  from { opacity: 0; transform: translateX(8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Inputs ───────────────────────────────────────────────────────────────── */
+.wa-form-group { width: 100%; }
+
+.wa-input {
+  width: 100%;
+  padding: 11px 14px;
+  background-color: #f0f2f5;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  color: #111;
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s, background-color 0.2s;
+  appearance: none;
+}
+
+.wa-input::placeholder { color: #8696a0; }
+
+.wa-input:focus {
+  border-color: #00a884;
+  background-color: #fff;
+}
+
+.wa-input.wa-input-error {
+  border-color: #ef4444;
+  background-color: #fff5f5;
+}
+
+select.wa-input {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238696a0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 15px;
+  padding-right: 36px;
+}
+
+select.wa-input option { color: #111; background-color: #fff; }
+
+/* ── Botões ───────────────────────────────────────────────────────────────── */
+.wa-btn {
+  width: 100%;
+  padding: 11px 18px;
+  border-radius: 8px;
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.wa-btn-primary {
+  background-color: #25d366;
+  color: #fff;
+}
+.wa-btn-primary:hover:not(:disabled) { background-color: #1ebe5d; }
+.wa-btn-primary:disabled             { opacity: 0.65; cursor: not-allowed; }
+
+.wa-btn-secondary {
+  background-color: #f0f2f5;
+  color: #54656f;
+}
+.wa-btn-secondary:hover { background-color: #e8ecef; }
+
+.wa-btn-row {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 8px;
+}
+
+.btn-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.wa-spinner { animation: wa-spin 0.9s linear infinite; }
+
+@keyframes wa-spin { to { transform: rotate(360deg); } }
+
+/* ── Mobile ───────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .wa-modal-overlay {
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0 0 80px 0;
+  }
+
+  .wa-modal-card {
+    max-width: 100%;
+    border-radius: 16px 16px 0 0;
+    max-height: 88vh;
+  }
+
+  .wa-floating-btn {
+    bottom: 16px;
+    right: 16px;
+    width: 54px;
+    height: 54px;
+  }
+}
+</style>

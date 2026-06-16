@@ -1,0 +1,1166 @@
+/* === Clean-Room Styles: Villa Cidade Jardim Eventos Corporativos === */
+
+/* --- Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- Global Variables --- */
+:root {
+  --color-wine: #984749;
+  --color-gold: #DDC588;
+  --color-bg-light: #F7F5F2;
+  --color-text-dark: #231F20;
+  --color-text-gray: #7A7A7A;
+  --color-accent-green: #61CE70;
+  --color-accent-green-hover: #4CAF50;
+  --font-title: 'Montserrat', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+}
+
+/* --- Global Reset & Base --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-dark);
+  background-color: #FFFFFF;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* --- Header / Navigation --- */
+.eventos-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: transparent !important;
+  border-bottom: 1px solid transparent !important;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.eventos-header.cor-ativa {
+  background-color: var(--color-bg-light) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03) !important;
+}
+
+.logo-container {
+  width: 100%;
+  max-width: 216px;
+  display: flex;
+  justify-content: center;
+}
+
+.header-logo {
+  height: 108px;
+  width: auto;
+  transition: filter 0.4s ease;
+}
+
+#meu-header-fixo:not(.cor-ativa) .header-logo {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* --- Hero Section --- */
+.eventos-hero {
+  position: relative;
+  min-height: 100vh;
+  padding: 140px 50px 60px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../assets/images/MG_7142-1-scaled.avif');
+  background-position: bottom center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.eventos-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(35, 31, 32, 0.85);
+  z-index: 1;
+}
+
+.eventos-hero-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1730px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 953fr 762fr;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.eventos-hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.hero-logo-wrapper {
+  max-width: 240px;
+  width: 100%;
+}
+
+.hero-logo-img {
+  width: 100%;
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+
+.eventos-hero-title {
+  font-family: var(--font-title);
+  font-size: clamp(28px, 4.5vw, 41px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.15;
+  color: #F7F5F2;
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 913px;
+}
+
+.eventos-hero-subtitle {
+  font-family: var(--font-title);
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 400;
+  line-height: 1.35;
+  color: #F7F5F2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  width: 85%;
+  max-width: 85%;
+}
+
+.eventos-hero-right {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+/* Form Card (Hero) */
+.eventos-form-card.hero-form {
+  width: 100% !important;
+  max-width: none !important;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--color-gold);
+  border-radius: 40px;
+  padding: 35px 30px;
+}
+
+.eventos-form-title {
+  font-family: var(--font-title);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.eventos-form-divider {
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-gold);
+  margin-bottom: 25px;
+}
+
+/* Custom form fields design inside hero */
+.eventos-form-card.hero-form .eventos-hero-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.eventos-form-card.hero-form .eventos-hero-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.eventos-form-card.hero-form .eventos-hero-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.eventos-form-card.hero-form .eventos-hero-input,
+.eventos-form-card.hero-form .eventos-hero-select,
+.eventos-form-card.hero-form .eventos-hero-textarea {
+  width: 100%;
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--color-gold) !important;
+  border-radius: 0 !important;
+  color: #FFFFFF !important;
+  font-family: var(--font-body);
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  padding: 10px 4px !important;
+  outline: none !important;
+  transition: border-color 0.3s;
+}
+
+.eventos-form-card.hero-form .eventos-hero-textarea {
+  height: 40px !important;
+  resize: none !important;
+  overflow: hidden !important;
+}
+
+.eventos-form-card.hero-form .eventos-hero-select {
+  cursor: pointer;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23DDC588' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 8px center !important;
+  background-size: 16px !important;
+  padding-right: 30px !important;
+}
+
+/* Elegant placeholder/invalid styling for select dropdown */
+.eventos-form-card.hero-form .eventos-hero-select:invalid {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.eventos-form-card.hero-form .eventos-hero-select option {
+  background-color: var(--color-text-dark) !important;
+  color: #FFFFFF !important;
+}
+
+.eventos-form-card.hero-form .eventos-hero-select option:disabled {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.eventos-form-card.hero-form .eventos-hero-input::placeholder,
+.eventos-form-card.hero-form .eventos-hero-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.85) !important;
+  opacity: 1;
+}
+
+.eventos-form-card.hero-form .eventos-hero-input:focus,
+.eventos-form-card.hero-form .eventos-hero-select:focus,
+.eventos-form-card.hero-form .eventos-hero-textarea:focus {
+  border-bottom-color: #FFFFFF !important;
+}
+
+.eventos-form-card.hero-form .eventos-hero-submit {
+  width: 100%;
+  background-color: var(--color-accent-green) !important;
+  color: #FFFFFF !important;
+  font-family: var(--font-body);
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  border: 1px solid var(--color-accent-green) !important;
+  border-radius: 15px !important;
+  padding: 16px 20px !important;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+  margin-top: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.eventos-form-card.hero-form .eventos-hero-submit:hover:not(:disabled) {
+  background-color: var(--color-accent-green-hover) !important;
+  border-color: var(--color-accent-green-hover) !important;
+  transform: translateY(-1px);
+}
+
+.eventos-form-card.hero-form .eventos-hero-submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.eventos-form-card.hero-form .eventos-hero-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* success state on hero */
+.eventos-form-card.hero-form .eventos-hero-success-state {
+  text-align: center;
+  color: #FFFFFF;
+  padding: 40px 10px;
+}
+.eventos-form-card.hero-form .eventos-hero-success-icon {
+  font-size: 48px;
+  color: var(--color-accent-green);
+  margin-bottom: 15px;
+}
+.eventos-form-card.hero-form .eventos-hero-success-title {
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* form msg and footer styles on hero */
+.eventos-form-card.hero-form .eventos-hero-form-msg {
+  color: #ef4444;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  display: none;
+}
+
+.eventos-form-card.hero-form .eventos-hero-form-footer {
+  display: none !important;
+}
+
+/* --- Section 2: Conheça nosso Espaço (Split) --- */
+.eventos-split-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: var(--color-bg-light);
+  min-height: 600px;
+}
+
+.eventos-split-image {
+  position: relative;
+}
+
+.eventos-split-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.eventos-split-text-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #FFFFFF;
+  padding: 80px 60px 80px 12%;
+}
+
+.eventos-split-text-content {
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.eventos-section-title {
+  font-family: var(--font-title);
+  font-size: clamp(24px, 4.5vw, 48px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--color-wine);
+}
+
+.eventos-section-text {
+  font-family: var(--font-title);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--color-text-gray);
+}
+
+/* --- Section 3: O cenário perfeito (Gallery) --- */
+.eventos-gallery-section {
+  background-color: var(--color-wine);
+  padding: 80px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.eventos-gallery-header {
+  text-align: center;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.eventos-gallery-section .eventos-section-title {
+  color: var(--color-gold);
+}
+
+.eventos-gallery-subtitle {
+  font-family: var(--font-title);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--color-bg-light);
+}
+
+.eventos-gallery-grid {
+  width: 100%;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0px; /* Edge to edge style */
+}
+
+.eventos-gallery-item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+}
+
+.eventos-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.eventos-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.4s ease;
+}
+
+.eventos-gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.eventos-gallery-item:hover .eventos-gallery-overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* --- Section 4: Características --- */
+.eventos-features-section {
+  background-color: var(--color-bg-light);
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.eventos-features-title {
+  font-family: var(--font-title);
+  font-size: clamp(24px, 4.5vw, 48px);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-wine);
+  max-width: 1000px;
+  line-height: 1.1;
+}
+
+.eventos-features-subtitle {
+  font-family: var(--font-title);
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--color-text-gray);
+  max-width: 1000px;
+  margin-bottom: 30px;
+}
+
+.eventos-features-grid {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+  justify-content: center;
+}
+
+.eventos-feature-card {
+  background-color: transparent;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  transition: transform 0.3s ease;
+}
+
+.eventos-feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.eventos-feature-icon {
+  width: 50px;
+  height: 50px;
+  color: #8F6651;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eventos-feature-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.eventos-feature-label {
+  font-family: var(--font-title);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-text-gray);
+  line-height: 1.25;
+}
+
+/* --- Section 5: Alta Gastronomia --- */
+.eventos-gastronomy-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+}
+
+.eventos-gastronomy-text-container {
+  position: relative;
+  background-image: url('../assets/images/MG_7307-scaled.avif');
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 60px;
+}
+
+.eventos-gastronomy-text-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 1;
+}
+
+.eventos-gastronomy-text-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+}
+
+.eventos-gastronomy-title {
+  font-family: var(--font-title);
+  font-size: clamp(24px, 4.5vw, 48px);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.eventos-gastronomy-text {
+  font-family: var(--font-title);
+  font-size: clamp(16px, 2.5vw, 23px);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--color-bg-light);
+}
+
+.eventos-gastronomy-carousel {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  min-height: 400px;
+}
+
+.eventos-carousel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+}
+
+.eventos-carousel-slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.eventos-carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Section 6: Memórias Construídas --- */
+.eventos-memories-section {
+  background-color: #FFFFFF;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.eventos-memories-header {
+  text-align: center;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.eventos-memories-section .eventos-section-title {
+  color: var(--color-wine);
+}
+
+.eventos-memories-subtitle {
+  font-family: var(--font-title);
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--color-text-gray);
+}
+
+.eventos-memories-grid {
+  width: 90%;
+  max-width: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0px;
+}
+
+.eventos-memories-item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  cursor: pointer;
+  border-radius: 0px;
+}
+
+.eventos-memories-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.eventos-memories-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.4s ease;
+}
+
+.eventos-memories-item:hover img {
+  transform: scale(1.08);
+}
+
+.eventos-memories-item:hover .eventos-memories-overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* --- Section 7: Contato --- */
+.eventos-contact-section {
+  position: relative;
+  background-color: var(--color-wine);
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.eventos-contact-container {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 50px;
+  align-items: flex-start;
+}
+
+.eventos-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.eventos-contact-title {
+  font-family: var(--font-title);
+  font-size: clamp(24px, 4.5vw, 48px);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  line-height: 1.15;
+}
+
+.eventos-contact-subtitle {
+  font-family: var(--font-title);
+  font-size: 21px;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+
+/* Contato Form Card */
+.eventos-form-card.contact-form {
+  width: 100%;
+  background-color: var(--color-bg-light);
+  border-radius: 40px;
+  padding: 45px 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.eventos-form-card.contact-form .eventos-form-title {
+  color: var(--color-wine);
+}
+
+.eventos-form-card.contact-form .eventos-form-divider {
+  background-color: var(--color-wine);
+}
+
+/* Contact fields overrides (Wine theme) */
+.eventos-form-card.contact-form .eventos-contato-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.eventos-form-card.contact-form .eventos-contato-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.eventos-form-card.contact-form .eventos-contato-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.eventos-form-card.contact-form .eventos-contato-input,
+.eventos-form-card.contact-form .eventos-contato-select,
+.eventos-form-card.contact-form .eventos-contato-textarea {
+  width: 100%;
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--color-gold) !important;
+  border-radius: 0 !important;
+  color: var(--color-wine) !important;
+  font-family: var(--font-body);
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  padding: 10px 4px !important;
+  outline: none !important;
+  transition: border-color 0.3s;
+}
+
+.eventos-form-card.contact-form .eventos-contato-textarea {
+  height: 40px !important;
+  resize: none !important;
+  overflow: hidden !important;
+}
+
+.eventos-form-card.contact-form .eventos-contato-select {
+  cursor: pointer;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23984749' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 8px center !important;
+  background-size: 16px !important;
+  padding-right: 30px !important;
+}
+
+/* Elegant placeholder/invalid styling for select dropdown */
+.eventos-form-card.contact-form .eventos-contato-select:invalid {
+  color: rgba(152, 71, 73, 0.8) !important;
+}
+
+.eventos-form-card.contact-form .eventos-contato-select option {
+  background-color: #FFFFFF !important;
+  color: var(--color-text-dark) !important;
+}
+
+.eventos-form-card.contact-form .eventos-contato-select option:disabled {
+  color: rgba(152, 71, 73, 0.5) !important;
+}
+
+.eventos-form-card.contact-form .eventos-contato-input::placeholder,
+.eventos-form-card.contact-form .eventos-contato-textarea::placeholder {
+  color: rgba(152, 71, 73, 0.8) !important;
+  opacity: 1;
+}
+
+.eventos-form-card.contact-form .eventos-contato-input:focus,
+.eventos-form-card.contact-form .eventos-contato-select:focus,
+.eventos-form-card.contact-form .eventos-contato-textarea:focus {
+  border-bottom-color: var(--color-wine) !important;
+}
+
+.eventos-form-card.contact-form .eventos-contato-submit {
+  width: 100%;
+  background-color: var(--color-accent-green) !important;
+  color: #FFFFFF !important;
+  font-family: var(--font-body);
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  border: 1px solid var(--color-accent-green) !important;
+  border-radius: 15px !important;
+  padding: 16px 20px !important;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+  margin-top: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.eventos-form-card.contact-form .eventos-contato-submit:hover:not(:disabled) {
+  background-color: var(--color-accent-green-hover) !important;
+  border-color: var(--color-accent-green-hover) !important;
+  transform: translateY(-1px);
+}
+
+.eventos-form-card.contact-form .eventos-contato-submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.eventos-form-card.contact-form .eventos-contato-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* success state on contact form */
+.eventos-form-card.contact-form .eventos-contato-success-state {
+  text-align: center;
+  color: var(--color-wine);
+  padding: 40px 10px;
+}
+.eventos-form-card.contact-form .eventos-contato-success-icon {
+  font-size: 48px;
+  color: var(--color-accent-green);
+  margin-bottom: 15px;
+}
+.eventos-form-card.contact-form .eventos-contato-success-title {
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* form msg and footer styles on contact form */
+.eventos-form-card.contact-form .eventos-contato-form-msg {
+  color: #ef4444;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  display: none;
+}
+
+.eventos-form-card.contact-form .eventos-contato-form-footer {
+  display: none !important;
+}
+
+/* --- Footer --- */
+.eventos-footer {
+  background-color: #232323;
+  padding: 24px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 30px;
+}
+
+.footer-copyright {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-title);
+  text-align: left;
+}
+
+.footer-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-logo {
+  max-width: 180px;
+  height: auto;
+  display: block;
+}
+
+.footer-developer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  font-family: var(--font-title);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.developer-logo {
+  width: 90px;
+  height: auto;
+  display: block;
+}
+
+/* --- Flatpickr styling overrides for wine/gold theme --- */
+.flatpickr-calendar {
+  background: var(--color-bg-light) !important;
+  border: 1px solid var(--color-gold) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 15px !important;
+  font-family: var(--font-body) !important;
+}
+
+.flatpickr-day.selected {
+  background: var(--color-wine) !important;
+  border-color: var(--color-wine) !important;
+  color: #FFFFFF !important;
+}
+
+.flatpickr-day:hover {
+  background: rgba(152, 71, 73, 0.1) !important;
+}
+
+.mobile-br {
+  display: none;
+}
+
+/* --- Responsive Media Queries --- */
+@media (max-width: 1024px) {
+  .eventos-hero {
+    padding: 120px 20px 60px 20px;
+  }
+
+  .eventos-hero-container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .eventos-hero-left {
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .eventos-hero-right {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .eventos-split-section {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .eventos-split-image {
+    order: 2;
+    height: 400px;
+  }
+
+  .eventos-split-text-container {
+    order: 1;
+    padding: 50px 20px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .eventos-split-text-content {
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .eventos-features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .eventos-gastronomy-section {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .eventos-gastronomy-carousel {
+    height: 400px;
+  }
+
+  .eventos-contact-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .eventos-contact-info {
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-br {
+    display: inline;
+  }
+
+  .eventos-hero {
+    padding-top: 120px;
+  }
+
+  .eventos-section-title,
+  .eventos-features-title,
+  .eventos-gastronomy-title,
+  .eventos-contact-title {
+    font-size: 21px;
+  }
+
+  .eventos-section-text,
+  .eventos-gallery-subtitle,
+  .eventos-memories-subtitle,
+  .eventos-features-subtitle,
+  .eventos-feature-label,
+  .eventos-gastronomy-text,
+  .eventos-contact-subtitle {
+    font-size: 16px;
+  }
+
+  .eventos-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .eventos-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .eventos-feature-card:last-child {
+    grid-column: span 2;
+  }
+
+  .eventos-memories-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+  }
+  .footer-copyright {
+    text-align: center;
+    order: 1;
+  }
+  .footer-brand {
+    order: 2;
+  }
+  .footer-developer {
+    justify-content: center;
+    order: 3;
+  }
+}
+
+@media (max-width: 480px) {
+  .eventos-form-card.hero-form,
+  .eventos-form-card.contact-form {
+    padding: 25px 20px;
+    border-radius: 25px;
+  }
+
+  .eventos-form-card.hero-form .eventos-hero-form-row,
+  .eventos-form-card.contact-form .eventos-contato-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .eventos-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .eventos-feature-card:last-child {
+    grid-column: span 2;
+  }
+
+  .eventos-memories-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Success States --- */
+.eventos-hero-success-state,
+.eventos-contato-success-state {
+  display: none !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.eventos-hero-success-state {
+  color: #ffffff;
+}
+
+.eventos-contato-success-state {
+  color: var(--color-wine);
+}
+
+.eventos-hero-success-state.active,
+.eventos-contato-success-state.active {
+  display: flex !important;
+}
+
+.eventos-hero-success-icon,
+.eventos-contato-success-icon {
+  width: 60px;
+  height: 60px;
+  background-color: var(--color-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+}
+
+.eventos-hero-success-icon svg,
+.eventos-contato-success-icon svg {
+  width: 30px;
+  height: 30px;
+  stroke: var(--color-wine);
+  stroke-width: 3;
+  fill: none;
+}
+
+.eventos-hero-success-title,
+.eventos-contato-success-title {
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.eventos-hero-success-text,
+.eventos-contato-success-text {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+}

@@ -1,0 +1,133 @@
+---
+import Base from '../layouts/Base.astro';
+import config from '../../config.json';
+import Img from '../components/ui/Img.astro';
+import LeadForm from '../components/forms/LeadForm.astro';
+import '../styles/bio.css';
+---
+
+<Base
+  title="BIO — Villa Cidade Jardim"
+  description="Um espaço marcante e pronto para receber o seu evento! Envie o formulário e damos o próximo passo juntos."
+  ogImage="/images/og-default.jpg"
+  canonical="https://villacidadejd.com.br/bio/"
+>
+  <Fragment slot="head">
+    <!-- Flatpickr CSS & JS para Calendários -->
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/flatpickr.min.css" />
+    <script is:inline src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+  </Fragment>
+
+  <!-- Cabeçalho com Logotipo -->
+  <header class="bio-header">
+    <div class="logo-container">
+      <Img src="logo_villa_cidade_jardim-semfundo.png" alt="Villa Cidade Jardim" class="header-logo" priority />
+    </div>
+  </header>
+
+  <!-- Seção Principal com Formulário -->
+  <main class="bio-main">
+    <div class="bio-bg-overlay"></div>
+    <div class="bio-content-container">
+      <h1 class="bio-title">Um espaço marcante e pronto para receber o seu evento!</h1>
+      
+      <div class="bio-form-card">
+        <h2 class="bio-form-title">Envie o formulário e damos o próximo passo juntos.</h2>
+        <hr class="bio-form-divider" />
+        
+        <LeadForm
+          formId="form_bio"
+          project={config.project_slug}
+          submitUrl={config.forms['lead-form'].webhooks[0]}
+          redirectUrl={config.forms['lead-form'].redirect_on_success}
+          submitText="ENVIAR SOLICITAÇÃO"
+          honeypot
+          prefix="bio"
+          fields={[
+            { name: 'nome', type: 'text', placeholder: 'Nome', required: true },
+            {
+              type: 'row',
+              fields: [
+                { name: 'telefone', type: 'tel', placeholder: 'WhatsApp', required: true },
+                { name: 'email', type: 'email', placeholder: 'E-mail', required: true }
+              ]
+            },
+            {
+              name: 'tipo',
+              type: 'select',
+              required: true,
+              options: [
+                { value: '', label: 'Tipo de evento:', disabled: true, selected: true },
+                { value: 'Aniversário', label: 'Aniversário' },
+                { value: 'Aniversário debutante', label: 'Aniversário debutante' },
+                { value: 'Bodas', label: 'Bodas' },
+                { value: 'Casamento', label: 'Casamento' },
+                { value: 'Confraternização corporativa', label: 'Confraternização corporativa' },
+                { value: 'Confraternização social', label: 'Confraternização social' },
+                { value: 'Corporativo', label: 'Corporativo' },
+                { value: 'Feiras e Exposições', label: 'Feiras e Exposições' },
+                { value: 'Formatura', label: 'Formatura' },
+                { value: 'Happy Hours', label: 'Happy Hours' },
+                { value: 'Masterclass e Palestras', label: 'Masterclass e Palestras' },
+                { value: 'Mentorias e Treinamentos', label: 'Mentorias e Treinamentos' },
+                { value: 'Offsite corporativo', label: 'Offsite corporativo' },
+                { value: 'Reuniões de Networking', label: 'Reuniões de Networking' },
+                { value: 'Shows e Festivais', label: 'Shows e Festivais' },
+                { value: 'Workshops, Conferências e Seminários', label: 'Workshops, Conferências e Seminários' },
+                { value: 'Outros', label: 'Outros' }
+              ]
+            },
+            { name: 'data', type: 'text', placeholder: 'Data do Evento', required: true, id: 'bio-data-evento', readonly: true },
+            { name: 'convidados', type: 'number', placeholder: 'N° de Pessoas', required: true },
+            { name: 'mensagem', type: 'textarea', placeholder: 'Detalhes adicionais: (Não obrigatório)', required: false, rows: 4 }
+          ]}
+        />
+      </div>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="bio-footer">
+    <div class="footer-container">
+      <div class="footer-copyright">
+        <p>© 2026 - Villa Cidade Jardim – Todos os direitos reservados.</p>
+      </div>
+      
+      <div class="footer-brand">
+        <Img src="logo_villa_cidade_jardim-semfundo.png" alt="Villa Cidade Jardim" class="footer-logo" />
+      </div>
+      
+      <div class="footer-developer">
+        <span>Desenvolvido por:</span>
+        <a href="http://dmove.com.br" target="_blank" rel="noopener noreferrer">
+          <Img src="Versao-Principal-Negativo-scaled-e1750426923582.avif" alt="Dmove" class="developer-logo" />
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Flatpickr Inicialização Script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dateInput = document.getElementById('bio-data-evento');
+      if (dateInput && window.flatpickr) {
+        window.flatpickr(dateInput, {
+          disableMobile: true,
+          dateFormat: 'd/m/Y',
+          locale: {
+            weekdays: {
+              shorthand: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+              longhand: ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
+            },
+            months: {
+              shorthand: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+              longhand: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            },
+            firstDayOfWeek: 1,
+            ordinal: () => 'º',
+          },
+        });
+      }
+    });
+  </script>
+</Base>

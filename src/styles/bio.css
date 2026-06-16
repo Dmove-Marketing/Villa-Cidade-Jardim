@@ -1,0 +1,390 @@
+/* === Clean-Room Styles: Villa Cidade Jardim Bio === */
+
+/* --- Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- Header --- */
+.bio-header {
+  background-color: #ffffff;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.logo-container {
+  width: 100%;
+  max-width: 180px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-container img {
+  width: 100%;
+  height: auto;
+}
+
+/* --- Main Section --- */
+.bio-main {
+  position: relative;
+  min-height: 85vh;
+  padding: 80px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../assets/images/MG_7142-1-scaled.avif');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bio-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.bio-content-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.bio-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(24px, 3.5vw, 33px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: #F7F5F2;
+  text-align: center;
+  max-width: 760px;
+  letter-spacing: -0.01em;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin-top: -44px;
+}
+
+/* --- Form Card --- */
+.bio-form-card {
+  background-color: #984749;
+  border-radius: 40px;
+  padding: 25px 40px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bio-form-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(16px, 3.5vw, 20px);
+  font-weight: 400;
+  color: #F7F5F2;
+  text-align: center;
+  line-height: 1.35;
+  margin-bottom: 20px;
+}
+
+.bio-form-divider {
+  border: none;
+  height: 2px;
+  background-color: #DDC588;
+  margin: 0 auto 25px auto;
+  width: 100%;
+}
+
+/* --- LeadForm (Prefixed with bio-) --- */
+.bio-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.bio-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.bio-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.bio-form-group.full {
+  grid-column: span 2;
+}
+
+/* Form Inputs Styling */
+.bio-input,
+.bio-select,
+.bio-textarea {
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid #DDC588 !important;
+  border-radius: 0 !important;
+  padding: 12px 6px !important;
+  color: #ffffff !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  outline: none !important;
+  width: 100%;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.bio-textarea {
+  resize: vertical;
+}
+
+/* Input Focus States */
+.bio-input:focus,
+.bio-select:focus,
+.bio-textarea:focus {
+  border-bottom-color: #ffffff !important;
+}
+
+/* Select options dropdown */
+.bio-select option {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+/* Input Placeholders */
+.bio-input::placeholder,
+.bio-select::placeholder,
+.bio-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.75) !important;
+  opacity: 1;
+}
+
+/* Submit Button */
+.bio-submit {
+  background-color: #61CE70 !important;
+  color: #ffffff !important;
+  border-radius: 15px !important;
+  border: 1px solid #61CE70 !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  padding: 16px !important;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.bio-submit:hover:not(:disabled) {
+  background-color: #61CE70 !important;
+  border-color: #61CE70 !important;
+  transform: translateY(-1px);
+}
+
+.bio-submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.bio-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Validation errors */
+.bio-field-error {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Privacy policy text */
+.bio-form-footer {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin-top: 15px;
+  width: 100%;
+}
+
+
+/* Flatpickr override to match gold theme */
+.flatpickr-calendar {
+  background: #1c1614 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+.flatpickr-calendar .flatpickr-months {
+  background: #0d0908 !important;
+}
+.flatpickr-calendar .flatpickr-month {
+  color: #ffffff !important;
+}
+.flatpickr-calendar .flatpickr-weekday {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.flatpickr-calendar .flatpickr-day {
+  color: #ffffff !important;
+}
+.flatpickr-calendar .flatpickr-day:hover {
+  background: #DDC588 !important;
+  color: #000000 !important;
+}
+.flatpickr-calendar .flatpickr-day.selected {
+  background: #984749 !important;
+  color: #ffffff !important;
+  border-color: #984749 !important;
+}
+
+/* --- Footer --- */
+.bio-footer {
+  background-color: #232323;
+  padding: 40px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 30px;
+}
+
+.footer-copyright {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+}
+
+.footer-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-logo {
+  max-width: 120px;
+  height: auto;
+  display: block;
+}
+
+.footer-developer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.developer-logo {
+  width: 90px;
+  height: auto;
+  display: block;
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 768px) {
+  .bio-main {
+    padding: 40px 15px;
+  }
+  
+  .bio-title {
+    margin-top: 0;
+  }
+
+  .bio-form-card {
+    padding: 40px 20px;
+    border-radius: 30px;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .footer-copyright {
+    order: 2;
+    text-align: center;
+  }
+
+  .footer-brand {
+    order: 1;
+  }
+
+  .footer-developer {
+    order: 3;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .bio-form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* --- Success State --- */
+.bio-success-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  color: #ffffff;
+}
+
+.bio-success-state.active {
+  display: flex;
+}
+
+.bio-success-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #DDC588;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.bio-success-icon svg {
+  width: 30px;
+  height: 30px;
+  stroke: #984749;
+  stroke-width: 3;
+  fill: none;
+}
+
+.bio-success-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.bio-success-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  opacity: 0.9;
+}
