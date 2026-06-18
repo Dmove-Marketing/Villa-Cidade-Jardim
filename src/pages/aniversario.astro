@@ -1,11 +1,27 @@
 ---
 // Gerado a partir de: aniversario.html
 import { Fragment } from 'astro/jsx-runtime';
+import { getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import config from '../../config.json';
 import Img from '../components/ui/Img.astro';
 import LeadForm from '../components/forms/LeadForm.astro';
 import '../styles/aniversario.css';
+
+const imageGlob = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/**/*.{jpg,jpeg,png,webp,avif,gif}',
+  { eager: true }
+);
+const gastronomyBgImage = await getImage({
+  src: imageGlob['/src/assets/images/MG_7345-1-scaled.avif'].default,
+  width: 900,
+  quality: 80,
+});
+const drinksBgImage = await getImage({
+  src: imageGlob['/src/assets/images/drink-11.avif'].default,
+  width: 900,
+  quality: 80,
+});
 ---
 
 <Base
@@ -154,7 +170,7 @@ import '../styles/aniversario.css';
     <!-- Seção 5: Gastronomia e Bar Split -->
     <!-- Bloco 1: Gastronomia Personalizada -->
     <section class="aniversario-gastronomy-split">
-      <div class="aniversario-gastronomy-info gastronomy-bg">
+      <div class="aniversario-gastronomy-info gastronomy-bg" style={`background-image: url('${gastronomyBgImage.src}')`}>
         <div class="aniversario-gastronomy-overlay"></div>
         <div class="aniversario-gastronomy-content">
           <h3 class="aniversario-split-title">gastronomia personalizada</h3>
@@ -181,7 +197,7 @@ import '../styles/aniversario.css';
           <Img src="drink-22.avif" alt="Bar de drinks 2" class="carousel-img" />
         </div>
       </div>
-      <div class="aniversario-gastronomy-info drinks-bg">
+      <div class="aniversario-gastronomy-info drinks-bg" style={`background-image: url('${drinksBgImage.src}')`}>
         <div class="aniversario-gastronomy-overlay"></div>
         <div class="aniversario-gastronomy-content">
           <h3 class="aniversario-split-title">Bar de Drinks</h3>

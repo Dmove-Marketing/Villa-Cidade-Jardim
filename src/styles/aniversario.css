@@ -239,7 +239,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
-  width: 90%;
+  width: 100%;
   max-width: 100%;
   margin: 0 auto;
 }
@@ -361,11 +361,11 @@ body {
 }
 
 .aniversario-gastronomy-info.gastronomy-bg {
-  background-image: url('../assets/images/MG_7345-1-scaled.avif');
+  /* background-image aplicado via getImage() no .astro */
 }
 
 .aniversario-gastronomy-info.drinks-bg {
-  background-image: url('../assets/images/drink-11.avif');
+  /* background-image aplicado via getImage() no .astro */
 }
 
 .aniversario-gastronomy-overlay {

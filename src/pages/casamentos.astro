@@ -22,6 +22,11 @@ const heroMobile = await getImage({
   width: 768,
   quality: 80,
 });
+const bannerImage = await getImage({
+  src: imageGlob['/src/assets/images/MG_9220-1-scaled.avif'].default,
+  width: 1440,
+  quality: 80,
+});
 ---
 
 <Base
@@ -67,7 +72,7 @@ const heroMobile = await getImage({
     </section>
 
     <!-- Seção 2: Banner Image (Desktop) -->
-    <section class="casamentos-banner-section"></section>
+    <section class="casamentos-banner-section" style={`background-image: url('${bannerImage.src}')`}></section>
 
     <!-- Seção 3: Split Content (Um espaço que se adapta...) -->
     <section class="casamentos-split-section">

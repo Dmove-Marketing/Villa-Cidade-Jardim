@@ -1,11 +1,22 @@
 ---
 // Gerado a partir de: bodas.html
 import { Fragment } from 'astro/jsx-runtime';
+import { getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import config from '../../config.json';
 import Img from '../components/ui/Img.astro';
 import LeadForm from '../components/forms/LeadForm.astro';
 import '../styles/bodas.css';
+
+const imageGlob = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/**/*.{jpg,jpeg,png,webp,avif,gif}',
+  { eager: true }
+);
+const splitImage = await getImage({
+  src: imageGlob['/src/assets/images/MG_6962-scaled.avif'].default,
+  width: 900,
+  quality: 80,
+});
 ---
 
 <Base
@@ -46,7 +57,7 @@ import '../styles/bodas.css';
 
     <!-- Seção 2: Um espaço que se adapta... -->
     <section class="bodas-split-section">
-      <div class="bodas-split-image"></div>
+      <div class="bodas-split-image" style={`background-image: url('${splitImage.src}')`}></div>
       <div class="bodas-split-text-container">
         <div class="bodas-split-text-content">
           <h2 class="bodas-section-title">Um espaço que se adapta à sua celebração!</h2>
